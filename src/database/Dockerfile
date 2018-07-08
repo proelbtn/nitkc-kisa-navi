@@ -1,0 +1,1 @@
+FROM library/elasticsearch:5.6.10-alpine

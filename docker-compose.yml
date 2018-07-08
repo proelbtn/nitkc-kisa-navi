@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+    database:
+        build: src/database
+        ports:
+            - 9200:9200/tcp
+        expose:
+            - 9200
+            - 9300
