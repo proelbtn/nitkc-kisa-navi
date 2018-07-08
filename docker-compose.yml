@@ -7,3 +7,4 @@ services:
             - ./src/tornado:/data
         ports:
             - 8888:8888/tcp
+        links: elasticsearch
