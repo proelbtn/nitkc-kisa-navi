@@ -1,5 +1,12 @@
 version: '3.6'
 services:
+    tornado:
+        build: src/tornado
+        working_dir: /data
+        volumes:
+            - ./src/tornado:/data
+        ports:
+            - 8888:8888/tcp
     elasticsearch:
         image: library/elasticsearch:5.6.10-alpine
         ports:
