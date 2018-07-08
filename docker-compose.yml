@@ -7,3 +7,16 @@ services:
             - ./src/tornado:/data
         ports:
             - 8888:8888/tcp
+    elasticsearch:
+        image: library/elasticsearch:5.6.10-alpine
+        ports:
+            - 9200:9200/tcp
+        expose:
+            - 9200
+            - 9300
+    kibana:
+        image: kibana:5.6.10
+        ports:
+            - 5601:5601/tcp
+        links:
+            - elasticsearch
