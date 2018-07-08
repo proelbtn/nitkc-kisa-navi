@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+    tornado:
+        build: src/tornado
+        working_dir: /data
+        volumes:
+            - ./src/tornado:/data
+        ports:
+            - 8888:8888/tcp
