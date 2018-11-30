@@ -3,45 +3,9 @@ package handlers
 import (
 	"github.com/graphql-go/graphql"
 	"github.com/labstack/echo"
+	"github.com/proelbtn/school-eve-navi/gateway/models"
 	"net/http"
 )
-
-type Shop struct {
-	Name string
-}
-
-func getSchema() (graphql.Schema, error) {
-	shop := graphql.NewObject(graphql.ObjectConfig{
-		Name: "Shop",
-		Fields: graphql.Fields{
-			"name": &graphql.Field{
-				Type: graphql.String,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if shop, ok := p.Source.(Shop); ok {
-						return shop.Name, nil
-					}
-					return p.Source, nil
-				},
-			},
-		},
-	})
-
-	query := graphql.NewObject(graphql.ObjectConfig{
-		Name: "Query",
-		Fields: graphql.Fields{
-			"shops": &graphql.Field{
-				Type: shop,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return Shop{Name: "Hello, World"}, nil
-				},
-			},
-		},
-	})
-
-	return graphql.NewSchema(graphql.SchemaConfig{
-		Query: query,
-	})
-}
 
 type Request struct {
 	Query string `json:"query" query:"query"`
@@ -49,9 +13,12 @@ type Request struct {
 
 func GraphQLHandler(c echo.Context) (err error) {
 	req := new(Request)
-	schema, err := getSchema()
+	schema, err := graphql.NewSchema(graphql.SchemaConfig{
+		Query: models.GetQueryObject(),
+	})
 
 	if err != nil {
+		c.Echo().Logger.Error(err)
 		return c.NoContent(http.StatusInternalServerError)
 	}
 
