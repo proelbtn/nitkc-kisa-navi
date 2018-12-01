@@ -12,7 +12,7 @@ func GetQueryObject() *graphql.Object {
 			"foods": &graphql.Field{
 				Type: GetFoodObject(),
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return food.FoodResponse{Name: "Food"}, nil
+					return food.Food{Name: "Food"}, nil
 				},
 			},
 			"shops": &graphql.Field{

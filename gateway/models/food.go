@@ -12,7 +12,7 @@ func GetFoodObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(food.FoodResponse); ok {
+					if obj, ok := p.Source.(food.Food); ok {
 						return obj.Name, nil
 					}
 					return nil, nil
