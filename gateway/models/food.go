@@ -2,11 +2,8 @@ package models
 
 import (
 	"github.com/graphql-go/graphql"
+	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
 )
-
-type Food struct {
-	Name string
-}
 
 func GetFoodObject() *graphql.Object {
 	config := graphql.ObjectConfig{
@@ -15,7 +12,7 @@ func GetFoodObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(Food); ok {
+					if obj, ok := p.Source.(food.FoodResponse); ok {
 						return obj.Name, nil
 					}
 					return nil, nil

@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/graphql-go/graphql"
+	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
 )
 
 func GetQueryObject() *graphql.Object {
@@ -11,13 +12,13 @@ func GetQueryObject() *graphql.Object {
 			"foods": &graphql.Field{
 				Type: GetFoodObject(),
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return Food{Name: "Food"}, nil
+					return food.FoodResponse{Name: "Food"}, nil
 				},
 			},
 			"shops": &graphql.Field{
 				Type: GetShopObject(),
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return Food{Name: "Shop"}, nil
+					return Shop{Name: "Shop"}, nil
 				},
 			},
 			"souvenirs": &graphql.Field{
