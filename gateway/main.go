@@ -1,10 +1,11 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/proelbtn/school-eve-navi/gateway/handlers"
-	"net/http"
 )
 
 func main() {
@@ -16,5 +17,5 @@ func main() {
 	allowedMethods := []string{http.MethodGet, http.MethodPost}
 	e.Match(allowedMethods, "/graphql", handlers.GraphQLHandler)
 
-	e.Logger.Fatal(e.Start(":8081"))
+	e.Logger.Fatal(e.Start(":8080"))
 }
