@@ -20,39 +20,78 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Food struct {
+type FoodRequest struct {
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Food) Reset()         { *m = Food{} }
-func (m *Food) String() string { return proto.CompactTextString(m) }
-func (*Food) ProtoMessage()    {}
-func (*Food) Descriptor() ([]byte, []int) {
+func (m *FoodRequest) Reset()         { *m = FoodRequest{} }
+func (m *FoodRequest) String() string { return proto.CompactTextString(m) }
+func (*FoodRequest) ProtoMessage()    {}
+func (*FoodRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b52ab5d0a6e96024, []int{0}
 }
 
-func (m *Food) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Food.Unmarshal(m, b)
+func (m *FoodRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FoodRequest.Unmarshal(m, b)
 }
-func (m *Food) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Food.Marshal(b, m, deterministic)
+func (m *FoodRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FoodRequest.Marshal(b, m, deterministic)
 }
-func (m *Food) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Food.Merge(m, src)
+func (m *FoodRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FoodRequest.Merge(m, src)
 }
-func (m *Food) XXX_Size() int {
-	return xxx_messageInfo_Food.Size(m)
+func (m *FoodRequest) XXX_Size() int {
+	return xxx_messageInfo_FoodRequest.Size(m)
 }
-func (m *Food) XXX_DiscardUnknown() {
-	xxx_messageInfo_Food.DiscardUnknown(m)
+func (m *FoodRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FoodRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Food proto.InternalMessageInfo
+var xxx_messageInfo_FoodRequest proto.InternalMessageInfo
 
-func (m *Food) GetName() string {
+func (m *FoodRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type FoodResponse struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FoodResponse) Reset()         { *m = FoodResponse{} }
+func (m *FoodResponse) String() string { return proto.CompactTextString(m) }
+func (*FoodResponse) ProtoMessage()    {}
+func (*FoodResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b52ab5d0a6e96024, []int{1}
+}
+
+func (m *FoodResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FoodResponse.Unmarshal(m, b)
+}
+func (m *FoodResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FoodResponse.Marshal(b, m, deterministic)
+}
+func (m *FoodResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FoodResponse.Merge(m, src)
+}
+func (m *FoodResponse) XXX_Size() int {
+	return xxx_messageInfo_FoodResponse.Size(m)
+}
+func (m *FoodResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FoodResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FoodResponse proto.InternalMessageInfo
+
+func (m *FoodResponse) GetName() string {
 	if m != nil {
 		return m.Name
 	}
@@ -60,16 +99,19 @@ func (m *Food) GetName() string {
 }
 
 func init() {
-	proto.RegisterType((*Food)(nil), "food.Food")
+	proto.RegisterType((*FoodRequest)(nil), "food.FoodRequest")
+	proto.RegisterType((*FoodResponse)(nil), "food.FoodResponse")
 }
 
 func init() { proto.RegisterFile("food/messages.proto", fileDescriptor_b52ab5d0a6e96024) }
 
 var fileDescriptor_b52ab5d0a6e96024 = []byte{
-	// 79 bytes of a gzipped FileDescriptorProto
+	// 100 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4e, 0xcb, 0xcf, 0x4f,
 	0xd1, 0xcf, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x2d, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17,
-	0x62, 0x01, 0x09, 0x2a, 0x49, 0x71, 0xb1, 0xb8, 0xe5, 0xe7, 0xa7, 0x08, 0x09, 0x71, 0xb1, 0xe4,
-	0x25, 0xe6, 0xa6, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06, 0x81, 0xd9, 0x49, 0x6c, 0x60, 0x85,
-	0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf6, 0x79, 0x18, 0xbc, 0x3f, 0x00, 0x00, 0x00,
+	0x62, 0x01, 0x09, 0x2a, 0x29, 0x72, 0x71, 0xbb, 0xe5, 0xe7, 0xa7, 0x04, 0xa5, 0x16, 0x96, 0xa6,
+	0x16, 0x97, 0x08, 0x09, 0x71, 0xb1, 0xe4, 0x25, 0xe6, 0xa6, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70,
+	0x06, 0x81, 0xd9, 0x4a, 0x4a, 0x5c, 0x3c, 0x10, 0x25, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0xd8,
+	0xd4, 0x24, 0xb1, 0x81, 0xcd, 0x34, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xb2, 0xce, 0x42, 0x52,
+	0x6a, 0x00, 0x00, 0x00,
 }

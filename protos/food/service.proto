@@ -4,10 +4,7 @@ package food;
 
 import "food/messages.proto";
 
-message FoodRequest {
-    string name = 1;
-}
 
-service FoodService {
-    rpc Search(FoodRequest) returns (Food) {}
+service Food {
+    rpc Search(FoodRequest) returns (FoodResponse) {}
 }

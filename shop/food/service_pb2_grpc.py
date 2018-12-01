@@ -2,10 +2,9 @@
 import grpc
 
 from food import messages_pb2 as food_dot_messages__pb2
-from food import service_pb2 as food_dot_service__pb2
 
 
-class FoodServiceStub(object):
+class FoodStub(object):
   # missing associated documentation comment in .proto file
   pass
 
@@ -16,13 +15,13 @@ class FoodServiceStub(object):
       channel: A grpc.Channel.
     """
     self.Search = channel.unary_unary(
-        '/food.FoodService/Search',
-        request_serializer=food_dot_service__pb2.FoodRequest.SerializeToString,
-        response_deserializer=food_dot_messages__pb2.Food.FromString,
+        '/food.Food/Search',
+        request_serializer=food_dot_messages__pb2.FoodRequest.SerializeToString,
+        response_deserializer=food_dot_messages__pb2.FoodResponse.FromString,
         )
 
 
-class FoodServiceServicer(object):
+class FoodServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
@@ -34,14 +33,14 @@ class FoodServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_FoodServiceServicer_to_server(servicer, server):
+def add_FoodServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Search': grpc.unary_unary_rpc_method_handler(
           servicer.Search,
-          request_deserializer=food_dot_service__pb2.FoodRequest.FromString,
-          response_serializer=food_dot_messages__pb2.Food.SerializeToString,
+          request_deserializer=food_dot_messages__pb2.FoodRequest.FromString,
+          response_serializer=food_dot_messages__pb2.FoodResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'food.FoodService', rpc_method_handlers)
+      'food.Food', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

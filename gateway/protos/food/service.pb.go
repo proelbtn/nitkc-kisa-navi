@@ -22,62 +22,17 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type FoodRequest struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *FoodRequest) Reset()         { *m = FoodRequest{} }
-func (m *FoodRequest) String() string { return proto.CompactTextString(m) }
-func (*FoodRequest) ProtoMessage()    {}
-func (*FoodRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c2d36a040c8dcb1f, []int{0}
-}
-
-func (m *FoodRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FoodRequest.Unmarshal(m, b)
-}
-func (m *FoodRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FoodRequest.Marshal(b, m, deterministic)
-}
-func (m *FoodRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FoodRequest.Merge(m, src)
-}
-func (m *FoodRequest) XXX_Size() int {
-	return xxx_messageInfo_FoodRequest.Size(m)
-}
-func (m *FoodRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_FoodRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FoodRequest proto.InternalMessageInfo
-
-func (m *FoodRequest) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func init() {
-	proto.RegisterType((*FoodRequest)(nil), "food.FoodRequest")
-}
-
 func init() { proto.RegisterFile("food/service.proto", fileDescriptor_c2d36a040c8dcb1f) }
 
 var fileDescriptor_c2d36a040c8dcb1f = []byte{
-	// 130 bytes of a gzipped FileDescriptorProto
+	// 112 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4a, 0xcb, 0xcf, 0x4f,
 	0xd1, 0x2f, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62,
 	0x01, 0x89, 0x49, 0x09, 0x83, 0x65, 0x72, 0x53, 0x8b, 0x8b, 0x13, 0xd3, 0x53, 0x8b, 0x21, 0x52,
-	0x4a, 0x8a, 0x5c, 0xdc, 0x6e, 0xf9, 0xf9, 0x29, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x42,
-	0x42, 0x5c, 0x2c, 0x79, 0x89, 0xb9, 0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x60, 0xb6,
-	0x91, 0x05, 0x44, 0x49, 0x30, 0xc4, 0x48, 0x21, 0x4d, 0x2e, 0xb6, 0xe0, 0xd4, 0xc4, 0xa2, 0xe4,
-	0x0c, 0x21, 0x41, 0x3d, 0x90, 0x89, 0x7a, 0x48, 0xfa, 0xa5, 0xb8, 0x10, 0x42, 0x4a, 0x0c, 0x49,
-	0x6c, 0x60, 0x3b, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x91, 0xd0, 0x64, 0xc9, 0x94, 0x00,
-	0x00, 0x00,
+	0x46, 0x96, 0x5c, 0x2c, 0x6e, 0xf9, 0xf9, 0x29, 0x42, 0x86, 0x5c, 0x6c, 0xc1, 0xa9, 0x89, 0x45,
+	0xc9, 0x19, 0x42, 0x82, 0x7a, 0x20, 0x75, 0x7a, 0x20, 0xd1, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2,
+	0x12, 0x29, 0x21, 0x64, 0xa1, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x25, 0x86, 0x24, 0x36, 0xb0,
+	0x09, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xa3, 0x8f, 0xa6, 0xc2, 0x72, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -88,64 +43,64 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// FoodServiceClient is the client API for FoodService service.
+// FoodClient is the client API for Food service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type FoodServiceClient interface {
-	Search(ctx context.Context, in *FoodRequest, opts ...grpc.CallOption) (*Food, error)
+type FoodClient interface {
+	Search(ctx context.Context, in *FoodRequest, opts ...grpc.CallOption) (*FoodResponse, error)
 }
 
-type foodServiceClient struct {
+type foodClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewFoodServiceClient(cc *grpc.ClientConn) FoodServiceClient {
-	return &foodServiceClient{cc}
+func NewFoodClient(cc *grpc.ClientConn) FoodClient {
+	return &foodClient{cc}
 }
 
-func (c *foodServiceClient) Search(ctx context.Context, in *FoodRequest, opts ...grpc.CallOption) (*Food, error) {
-	out := new(Food)
-	err := c.cc.Invoke(ctx, "/food.FoodService/Search", in, out, opts...)
+func (c *foodClient) Search(ctx context.Context, in *FoodRequest, opts ...grpc.CallOption) (*FoodResponse, error) {
+	out := new(FoodResponse)
+	err := c.cc.Invoke(ctx, "/food.Food/Search", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FoodServiceServer is the server API for FoodService service.
-type FoodServiceServer interface {
-	Search(context.Context, *FoodRequest) (*Food, error)
+// FoodServer is the server API for Food service.
+type FoodServer interface {
+	Search(context.Context, *FoodRequest) (*FoodResponse, error)
 }
 
-func RegisterFoodServiceServer(s *grpc.Server, srv FoodServiceServer) {
-	s.RegisterService(&_FoodService_serviceDesc, srv)
+func RegisterFoodServer(s *grpc.Server, srv FoodServer) {
+	s.RegisterService(&_Food_serviceDesc, srv)
 }
 
-func _FoodService_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Food_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FoodRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FoodServiceServer).Search(ctx, in)
+		return srv.(FoodServer).Search(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/food.FoodService/Search",
+		FullMethod: "/food.Food/Search",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FoodServiceServer).Search(ctx, req.(*FoodRequest))
+		return srv.(FoodServer).Search(ctx, req.(*FoodRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _FoodService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "food.FoodService",
-	HandlerType: (*FoodServiceServer)(nil),
+var _Food_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "food.Food",
+	HandlerType: (*FoodServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Search",
-			Handler:    _FoodService_Search_Handler,
+			Handler:    _Food_Search_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

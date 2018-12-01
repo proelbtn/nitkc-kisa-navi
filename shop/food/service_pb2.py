@@ -20,76 +20,37 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='food',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto\"\x1b\n\x0b\x46oodRequest\x12\x0c\n\x04name\x18\x01 \x01(\t28\n\x0b\x46oodService\x12)\n\x06Search\x12\x11.food.FoodRequest\x1a\n.food.Food\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto29\n\x04\x46ood\x12\x31\n\x06Search\x12\x11.food.FoodRequest\x1a\x12.food.FoodResponse\"\x00\x62\x06proto3')
   ,
   dependencies=[food_dot_messages__pb2.DESCRIPTOR,])
 
 
 
-
-_FOODREQUEST = _descriptor.Descriptor(
-  name='FoodRequest',
-  full_name='food.FoodRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='food.FoodRequest.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=49,
-  serialized_end=76,
-)
-
-DESCRIPTOR.message_types_by_name['FoodRequest'] = _FOODREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-FoodRequest = _reflection.GeneratedProtocolMessageType('FoodRequest', (_message.Message,), dict(
-  DESCRIPTOR = _FOODREQUEST,
-  __module__ = 'food.service_pb2'
-  # @@protoc_insertion_point(class_scope:food.FoodRequest)
-  ))
-_sym_db.RegisterMessage(FoodRequest)
 
 
-
-_FOODSERVICE = _descriptor.ServiceDescriptor(
-  name='FoodService',
-  full_name='food.FoodService',
+_FOOD = _descriptor.ServiceDescriptor(
+  name='Food',
+  full_name='food.Food',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=78,
-  serialized_end=134,
+  serialized_start=49,
+  serialized_end=106,
   methods=[
   _descriptor.MethodDescriptor(
     name='Search',
-    full_name='food.FoodService.Search',
+    full_name='food.Food.Search',
     index=0,
     containing_service=None,
-    input_type=_FOODREQUEST,
-    output_type=food_dot_messages__pb2._FOOD,
+    input_type=food_dot_messages__pb2._FOODREQUEST,
+    output_type=food_dot_messages__pb2._FOODRESPONSE,
     serialized_options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_FOODSERVICE)
+_sym_db.RegisterServiceDescriptor(_FOOD)
 
-DESCRIPTOR.services_by_name['FoodService'] = _FOODSERVICE
+DESCRIPTOR.services_by_name['Food'] = _FOOD
 
 # @@protoc_insertion_point(module_scope)
