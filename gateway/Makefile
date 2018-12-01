@@ -1,17 +1,13 @@
 all: fmt run
 
-ensure:
-	dep ensure
+initialize:
+	go get -v -u github.com/golang/protobuf/{proto,protoc-gen-go}
 
-genpb:
+protobuf:
 	mkdir -p protos/{food,shop,souvenir}
 	protoc --proto_path=../protos --go_out=plugins=grpc:protos/food ../protos/food.proto
 
-
-fmt:
-	go fmt ./...
-
-run: ensure
+run:
 	go run main.go
 
 

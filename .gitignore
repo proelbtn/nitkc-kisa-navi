@@ -1,0 +1,16 @@
+### https://raw.github.com/github/gitignore/4a8e0a151becd5ccbb83e4aca6e6c195f3d506fd/Global/VirtualEnv.gitignore
+
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+
