@@ -1,4 +1,8 @@
-all: run
+TAG := proelbtn/school-eve-navi-shop
+BARGS := --tag ${TAG}
+RARGS := --interactive --tty --publish 30001:30001
+
+all:
 
 initialize:
 	pip install grpcio-tools
@@ -6,5 +10,8 @@ initialize:
 protobuf:
 	python -m grpc_tools.protoc --proto_path=../protos --python_out=. --grpc_python_out=. ../protos/food/messages.proto ../protos/food/service.proto
 
+build:
+	DOCKER_BUILDKIT=1 docker build ${BARGS} .
+
 run:
-	python main.py
+	docker run ${RARGS} ${TAG}

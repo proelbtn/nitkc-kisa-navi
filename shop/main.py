@@ -14,7 +14,7 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service_pb2_grpc.add_FoodServiceServicer_to_server(
         FoodServiceServicer(), server)
-    server.add_insecure_port('localhost:50051')
+    server.add_insecure_port('0.0.0.0:30001')
     server.start()
     try:
         while True:
