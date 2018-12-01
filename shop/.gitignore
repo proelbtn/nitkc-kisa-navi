@@ -13,8 +13,6 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
-food_pb2.py
-food_pb2_grpc.py
 ### https://raw.github.com/github/gitignore/4a8e0a151becd5ccbb83e4aca6e6c195f3d506fd/Python.gitignore
 
 # Byte-compiled / optimized / DLL files
