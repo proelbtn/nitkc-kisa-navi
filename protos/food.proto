@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message FoodRequest {
+
+}
+
+message FoodResponse {
+    string name = 1;
+}
+
+service Food {
+    rpc Search(FoodRequest) returns (FoodResponse) {}
+}
