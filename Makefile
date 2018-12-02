@@ -1,3 +1,5 @@
+all:
+
 initialize:
 	cd gateway; make initialize
 	cd shop; make initialize
@@ -6,8 +8,10 @@ protobuf:
 	cd gateway; make protobuf
 	cd shop; make protobuf
 
-build:
-	docker-compose build
+build: protobuf
+	cd gateway; make build
+	cd shop; make build
 
-run:
+run: build
 	docker-compose up
+	docker-compose down

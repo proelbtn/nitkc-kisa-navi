@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/graphql-go/graphql"
 	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
 )
@@ -12,10 +14,10 @@ func GetFoodObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(food.FoodResponse); ok {
+					if obj, ok := p.Source.(*food.FoodResponse); ok {
 						return obj.Name, nil
 					}
-					return nil, nil
+					return nil, errors.New("unable to cast")
 				},
 			},
 		},
