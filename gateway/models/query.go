@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"errors"
 
 	"github.com/graphql-go/graphql"
 	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
@@ -13,15 +14,28 @@ func GetQueryObject() *graphql.Object {
 		Name: "Query",
 		Fields: graphql.Fields{
 			"foods": &graphql.Field{
+				Args: graphql.FieldConfigArgument{
+					"name": &graphql.ArgumentConfig{
+						Type:         graphql.String,
+						DefaultValue: "Hello, World!",
+						Description:  "A name of food",
+					},
+				},
 				Type: GetFoodObject(),
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					cc, err := grpc.Dial("shop:30001", grpc.WithInsecure())
+					name, ok := p.Args["name"].(string)
+					if !ok {
+						return nil, errors.New("name must be string")
+					}
+
+					cc, err := grpc.Dial("localhost:30001", grpc.WithInsecure())
 					if err != nil {
 						return nil, err
 					}
 
 					client := food.NewFoodClient(cc)
-					req := food.FoodRequest{Name: "Hello, world!"}
+					req := food.FoodRequest{Name: name}
+
 					return client.Search(context.Background(), &req)
 				},
 			},

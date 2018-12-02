@@ -1,4 +1,4 @@
-TAG := proelbtn/school-eve-navi-shop
+TAG := proelbtn/school-eve-navi-food
 BARGS := --tag ${TAG}
 RARGS := --interactive --tty --publish 30001:30001
 

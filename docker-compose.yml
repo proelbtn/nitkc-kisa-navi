@@ -4,7 +4,7 @@ services:
     image: proelbtn/school-eve-navi-gateway
     ports:
       - 8080:8080
-  shop:
-    image: proelbtn/school-eve-navi-shop
+  food:
+    image: proelbtn/school-eve-navi-food
     expose:
       - 30001
