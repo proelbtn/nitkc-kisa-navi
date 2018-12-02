@@ -4,9 +4,10 @@ import (
 	"context"
 	"errors"
 
+	"google.golang.org/grpc"
+
 	"github.com/graphql-go/graphql"
 	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
-	"google.golang.org/grpc"
 )
 
 func GetFoodObject() *graphql.Object {
@@ -71,19 +72,23 @@ func GetFoodField() *graphql.Field {
 		},
 		Type: GetFoodObject(),
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+			// validate params
 			name, ok := p.Args["name"].(string)
 			if !ok {
 				return nil, errors.New("name must be string")
 			}
 
+			// create request
+			req := food.FoodRequest{Name: name}
+
+			// prepare connection to upstream
 			cc, err := grpc.Dial("localhost:30001", grpc.WithInsecure())
 			if err != nil {
 				return nil, err
 			}
-
 			client := food.NewFoodClient(cc)
-			req := food.FoodRequest{Name: name}
 
+			// resolve
 			return client.Search(context.Background(), &req)
 		},
 	}
