@@ -17,5 +17,5 @@ func main() {
 	allowedMethods := []string{http.MethodGet, http.MethodPost}
 	e.Match(allowedMethods, "/graphql", handlers.GraphQLHandler)
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start("0.0.0.0:9000"))
 }

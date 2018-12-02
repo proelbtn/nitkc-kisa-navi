@@ -1,10 +1,14 @@
 version: "3"
 services:
+  front:
+    image: proelbtn/school-eve-navi-front
+    ports:
+      - 8080:8080
   gateway:
     image: proelbtn/school-eve-navi-gateway
     ports:
-      - 8080:8080
+      - 9000:9000
   food:
     image: proelbtn/school-eve-navi-food
-    expose:
-      - 30001
+    ports:
+      - 30001:30001

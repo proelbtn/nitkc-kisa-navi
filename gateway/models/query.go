@@ -47,7 +47,7 @@ func GetShopObject() *graphql.Object {
 
 func GetSouvenirObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "Shop",
+		Name: "Souvenir",
 		Fields: graphql.Fields{
 			"name": &graphql.Field{
 				Type: graphql.String,
@@ -82,7 +82,7 @@ func GetFoodField() *graphql.Field {
 			req := food.FoodRequest{Name: name}
 
 			// prepare connection to upstream
-			cc, err := grpc.Dial("localhost:30001", grpc.WithInsecure())
+			cc, err := grpc.Dial("food:30001", grpc.WithInsecure())
 			if err != nil {
 				return nil, err
 			}
@@ -105,7 +105,7 @@ func GetShopField() *graphql.Field {
 
 func GetSouvenirField() *graphql.Field {
 	return &graphql.Field{
-		Type: GetShopObject(),
+		Type: GetSouvenirObject(),
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 			return nil, nil
 		},

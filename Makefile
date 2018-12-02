@@ -9,9 +9,12 @@ protobuf:
 	cd food; make protobuf
 
 build: protobuf
+	cd front; make build
 	cd gateway; make build
 	cd food; make build
 
-run: build
-	docker-compose up
+start: build
+	docker-compose up -d
+
+destroy:
 	docker-compose down

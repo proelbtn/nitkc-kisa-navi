@@ -12,7 +12,6 @@ class FoodServicer(service_pb2_grpc.FoodServicer):
 
 
 def serve():
-    print("food service")
     logging = log.LoggingInterceptor()
     server = grpc.server(futures.ThreadPoolExecutor(
         max_workers=10), interceptors=(logging, ))
@@ -20,7 +19,7 @@ def serve():
     service_pb2_grpc.add_FoodServicer_to_server(
         FoodServicer(), server)
 
-    server.add_insecure_port('localhost:30001')
+    server.add_insecure_port('0.0.0.0:30001')
     server.start()
 
     try:
