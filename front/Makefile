@@ -8,7 +8,7 @@ initialize:
 	yarn
 
 build:
-	yarn run build
+	NODE_ENV=production API_URL=http://localhost:9000 yarn run build
 	DOCKER_BUILDKIT=1 docker build ${BARGS} .
 
 run:

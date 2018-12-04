@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  dev: true,
+  dev: process.env.NODE_ENV !== 'production',
 
   mode: 'spa',
 
@@ -49,7 +49,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseUrl: 'http://localhost:3000'
+    baseUrl: process.env.API_URL || 'http://localhost:3000'
   },
 
   /*

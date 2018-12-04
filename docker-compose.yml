@@ -3,9 +3,11 @@ services:
   front:
     image: proelbtn/school-eve-navi-front
     ports:
-      - 8080:8080
+      - 8080:80
   gateway:
     image: proelbtn/school-eve-navi-gateway
+    environment:
+      - ALLOW_ORIGINS=http://localhost:8080
     ports:
       - 9000:9000
   food:
