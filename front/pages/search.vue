@@ -12,21 +12,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
+import G from '../middleware/graphql-request-wrapper.ts'
 
 export default Vue.extend({
-  data: function() {
+  data() {
     return {
       name: ''
     }
   },
   methods: {
     search: function(event) {
-      this.$axios
-        .post('/graphql', {
-          query: 'query { foods(name: "' + this.name + '") { name } }'
-        })
+      G(this.$axios, '/graphql', {
+        query: 'query($name: String) { foods(name: $name) { name } }',
+        variables: { name: this.name }
+      })
         .then(console.log)
+        .catch(reason => {
+          console.error(reason)
+        })
     }
   }
 })
