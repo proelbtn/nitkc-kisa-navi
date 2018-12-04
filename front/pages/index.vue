@@ -1,5 +1,5 @@
 <template lang="pug">
-  section
+  main
     nuxt-link(to="/about") about
     nuxt-link(to="/search") search
 </template>

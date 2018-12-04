@@ -15,6 +15,8 @@ export default Vue.extend({ components: { Header, Footer } })
 </script>
 
 <style>
+@import '../node_modules/bulma/bulma.sass';
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
