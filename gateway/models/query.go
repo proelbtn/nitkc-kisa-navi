@@ -82,7 +82,7 @@ func GetFoodField() *graphql.Field {
 			req := food.FoodRequest{Name: name}
 
 			// prepare connection to upstream
-			cc, err := grpc.Dial("food:30001", grpc.WithInsecure())
+			cc, err := grpc.Dial("food:80", grpc.WithInsecure())
 			if err != nil {
 				return nil, err
 			}

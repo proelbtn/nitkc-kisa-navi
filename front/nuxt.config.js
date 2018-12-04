@@ -42,14 +42,12 @@ module.exports = {
     '@nuxtjs/proxy'
   ],
 
-  proxy: ['http://localhost:9000/graphql'],
-
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseUrl: process.env.API_URL || 'http://localhost:3000'
+    baseUrl: process.env.API_URL
   },
 
   /*

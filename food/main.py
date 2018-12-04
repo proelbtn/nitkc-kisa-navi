@@ -19,7 +19,7 @@ def serve():
     service_pb2_grpc.add_FoodServicer_to_server(
         FoodServicer(), server)
 
-    server.add_insecure_port('0.0.0.0:30001')
+    server.add_insecure_port('0.0.0.0:80')
     server.start()
 
     try:
