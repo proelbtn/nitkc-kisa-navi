@@ -14,7 +14,7 @@ import Footer from '../components/Footer.vue'
 export default Vue.extend({ components: { Header, Footer } })
 </script>
 
-<style>
+<style lang='scss'>
 @import '../node_modules/bulma/bulma.sass';
 
 html {

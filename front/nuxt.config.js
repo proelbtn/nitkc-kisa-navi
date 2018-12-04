@@ -1,6 +1,8 @@
 const pkg = require('./package')
 
 module.exports = {
+  dev: true,
+
   mode: 'spa',
 
   /*
@@ -36,13 +38,18 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+
+  proxy: ['http://localhost:9000/graphql'],
+
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseUrl: 'http://localhost:3000'
   },
 
   /*
