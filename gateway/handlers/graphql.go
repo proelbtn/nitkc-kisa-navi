@@ -1,14 +1,17 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/graphql-go/graphql"
 	"github.com/labstack/echo"
 	"github.com/proelbtn/school-eve-navi/gateway/models"
-	"net/http"
 )
 
 type Request struct {
-	Query string `json:"query" query:"query"`
+	Query          string                 `json:"query" query:"query"`
+	OperationName  string                 `json:"operationName" query:"operationName"`
+	VariableValues map[string]interface{} `json:"variables" query:"variables"`
 }
 
 func GraphQLHandler(c echo.Context) (err error) {
@@ -27,8 +30,10 @@ func GraphQLHandler(c echo.Context) (err error) {
 	}
 
 	params := graphql.Params{
-		Schema:        schema,
-		RequestString: req.Query,
+		Schema:         schema,
+		RequestString:  req.Query,
+		VariableValues: req.VariableValues,
+		OperationName:  req.OperationName,
 	}
 
 	return c.JSON(http.StatusOK, graphql.Do(params))
