@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import G from '../middleware/graphql-request-wrapper.ts'
+import G from '../middleware/graphql-request-wrapper'
 
 export default Vue.extend({
   data() {
