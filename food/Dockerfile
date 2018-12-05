@@ -1,6 +1,6 @@
 FROM python
 
-RUN pip install grpcio-tools
+RUN pip install grpcio-tools grpcio-reflection
 
 ADD . /data
 

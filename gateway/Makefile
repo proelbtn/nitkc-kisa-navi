@@ -9,7 +9,6 @@ initialize:
 
 protobuf:
 	mkdir -p protos
-	protoc --proto_path=../protos --go_out=plugins=grpc:"$(shell go env GOPATH)/src" ../protos/common/messages.proto
 	protoc --proto_path=../protos --go_out=plugins=grpc:"$(shell go env GOPATH)/src" ../protos/food/service.proto ../protos/food/messages.proto
 
 build:

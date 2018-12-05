@@ -3,32 +3,31 @@ syntax = "proto3";
 package food;
 option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/food";
 
-import "common/messages.proto";
+enum FoodGenre {
+    Invalid = 0;
+    GenreA = 1;
+    GenreB = 2;
+}
 
 message FoodRecord {
     int64 id = 1;
-    FoodEntity data = 2;
+    FoodData data = 2;
 }
 
-message FoodEntity {
-    enum Genre {
-        Genre0 = 0;
-        Genre1 = 1;
-        Genre2 = 2;
-    }
-
+message FoodData {
     string name = 1;
     string address = 2;
-    common.Coord coord = 3;
-    Genre genre = 4;
+    double latitude = 3;
+    double longitude = 4;
+    FoodGenre genre = 5;
 }
 
 message FoodCreateQuery {
-    FoodEntity data = 1;
+    FoodData data = 1;
 }
 
 message FoodCreateResult {
-    FoodRecord data = 1;
+    FoodRecord record = 1;
 }
 
 message FoodDeleteQuery {
@@ -39,14 +38,21 @@ message FoodDeleteResult {
     int64 affected = 1;
 }
 
-message FoodSearchByIdQuery {
+message FoodGetQuery {
     int64 id = 1;
 }
 
-message FoodSearchByIdResult {
+message FoodGetResult {
     FoodRecord record = 1;
 }
 
-message FoodSearchByGenre {
-    FoodEntity.Genre genre = 1;
+message FoodSearchQuery {
+    string name = 1;
+    double latitude = 2;
+    double longitude = 3;
+    FoodGenre genre = 4;
+}
+
+message FoodSearchResult {
+    repeated FoodRecord records = 1;
 }

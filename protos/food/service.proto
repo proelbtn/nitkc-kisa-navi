@@ -8,5 +8,6 @@ import "food/messages.proto";
 service Food {
     rpc Create(food.FoodCreateQuery) returns (food.FoodCreateResult) {}
     rpc Delete(food.FoodDeleteQuery) returns (food.FoodDeleteQuery) {}
-    rpc SearchById(food.FoodSearchByIdQuery) returns (food.FoodSearchByIdResult) {}
+    rpc Get(food.FoodGetQuery) returns (food.FoodGetResult) {}
+    rpc Search(food.FoodSearchQuery) returns (food.FoodSearchResult) {}
 }

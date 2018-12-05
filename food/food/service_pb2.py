@@ -19,8 +19,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='food/service.proto',
   package='food',
   syntax='proto3',
-  serialized_options=None,
-  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto29\n\x04\x46ood\x12\x31\n\x06Search\x12\x11.food.FoodRequest\x1a\x12.food.FoodResponse\"\x00\x62\x06proto3')
+  serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/food'),
+  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto2\xe8\x01\n\x04\x46ood\x12\x39\n\x06\x43reate\x12\x15.food.FoodCreateQuery\x1a\x16.food.FoodCreateResult\"\x00\x12\x38\n\x06\x44\x65lete\x12\x15.food.FoodDeleteQuery\x1a\x15.food.FoodDeleteQuery\"\x00\x12\x30\n\x03Get\x12\x12.food.FoodGetQuery\x1a\x13.food.FoodGetResult\"\x00\x12\x39\n\x06Search\x12\x15.food.FoodSearchQuery\x1a\x16.food.FoodSearchResult\"\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/foodb\x06proto3')
   ,
   dependencies=[food_dot_messages__pb2.DESCRIPTOR,])
 
@@ -29,6 +29,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+DESCRIPTOR._options = None
 
 _FOOD = _descriptor.ServiceDescriptor(
   name='Food',
@@ -36,16 +37,43 @@ _FOOD = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=49,
-  serialized_end=106,
+  serialized_start=50,
+  serialized_end=282,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Create',
+    full_name='food.Food.Create',
+    index=0,
+    containing_service=None,
+    input_type=food_dot_messages__pb2._FOODCREATEQUERY,
+    output_type=food_dot_messages__pb2._FOODCREATERESULT,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Delete',
+    full_name='food.Food.Delete',
+    index=1,
+    containing_service=None,
+    input_type=food_dot_messages__pb2._FOODDELETEQUERY,
+    output_type=food_dot_messages__pb2._FOODDELETEQUERY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Get',
+    full_name='food.Food.Get',
+    index=2,
+    containing_service=None,
+    input_type=food_dot_messages__pb2._FOODGETQUERY,
+    output_type=food_dot_messages__pb2._FOODGETRESULT,
+    serialized_options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='Search',
     full_name='food.Food.Search',
-    index=0,
+    index=3,
     containing_service=None,
-    input_type=food_dot_messages__pb2._FOODREQUEST,
-    output_type=food_dot_messages__pb2._FOODRESPONSE,
+    input_type=food_dot_messages__pb2._FOODSEARCHQUERY,
+    output_type=food_dot_messages__pb2._FOODSEARCHRESULT,
     serialized_options=None,
   ),
 ])

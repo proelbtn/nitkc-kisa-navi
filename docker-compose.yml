@@ -6,5 +6,9 @@ services:
       - 8080:80
   gateway:
     image: proelbtn/school-eve-navi-gateway
+    ports:
+      - 9000:80
   food:
     image: proelbtn/school-eve-navi-food
+    ports:
+      - 9001:80
