@@ -2,7 +2,7 @@
   main.columns.container
     div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
       div.content
-        h1.title hogehoge
+        h1.title eve-navi
         p
           | fugafugafugafuga
       div.content
