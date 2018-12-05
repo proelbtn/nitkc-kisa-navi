@@ -22,6 +22,10 @@ export default Vue.extend({
   },
   methods: {
     search: function(event) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(console.log, console.error)
+      }
+      /*
       G(this.$axios, '/graphql', {
         query: 'query($name: String) { foods(name: $name) { name } }',
         variables: { name: this.name }
@@ -30,6 +34,7 @@ export default Vue.extend({
         .catch(reason => {
           console.error(reason)
         })
+        */
     }
   }
 })

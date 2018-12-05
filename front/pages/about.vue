@@ -1,7 +1,7 @@
 <template lang="pug">
   main
-    nuxt-link(to="/about") about
-    nuxt-link(to="/search") search
+    p
+      | message
 </template>
 
 <script lang="ts">
