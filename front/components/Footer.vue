@@ -1,7 +1,7 @@
 <template lang="pug">
   footer.footer
     div.content.has-text-centered
-      p Created by
+      p Created by fmufmu
 </template>
 
 <script lang="ts">

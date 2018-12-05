@@ -49,6 +49,8 @@ module.exports = {
     baseUrl: process.env.API_URL
   },
 
+  proxy: ['http://localhost:8080/graphql'],
+
   /*
   ** Build configuration
   */

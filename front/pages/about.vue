@@ -6,12 +6,12 @@
         p
           | fugafugafugafuga
       div.content
-        h2.subtitle リンク
+        h2.subtitle Links
         div.field.is-grouped
           p.control
-            nuxt-link.button.is-info.is-rounded(to="/about") about
+            nuxt-link.button.is-info.is-rounded(to="/") Top
           p.control
-            nuxt-link.button.is-primary.is-rounded(to="/search") search
+            nuxt-link.button.is-primary.is-rounded(to="/search") Search
 </template>
 
 <script lang="ts">
