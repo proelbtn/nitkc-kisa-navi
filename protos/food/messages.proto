@@ -1,11 +1,52 @@
 syntax = "proto3"; 
 
 package food;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/food";
 
-message FoodRequest {
-    string name = 1;
+import "common/messages.proto";
+
+message FoodRecord {
+    int64 id = 1;
+    FoodEntity data = 2;
 }
 
-message FoodResponse {
+message FoodEntity {
+    enum Genre {
+        Genre0 = 0;
+        Genre1 = 1;
+        Genre2 = 2;
+    }
+
     string name = 1;
+    string address = 2;
+    common.Coord coord = 3;
+    Genre genre = 4;
+}
+
+message FoodCreateQuery {
+    FoodEntity data = 1;
+}
+
+message FoodCreateResult {
+    FoodRecord data = 1;
+}
+
+message FoodDeleteQuery {
+    int64 id = 1;
+}
+
+message FoodDeleteResult {
+    int64 affected = 1;
+}
+
+message FoodSearchByIdQuery {
+    int64 id = 1;
+}
+
+message FoodSearchByIdResult {
+    FoodRecord record = 1;
+}
+
+message FoodSearchByGenre {
+    FoodEntity.Genre genre = 1;
 }

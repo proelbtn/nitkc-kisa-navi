@@ -1,10 +1,12 @@
 syntax = "proto3";
 
 package food;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/food";
 
 import "food/messages.proto";
 
-
 service Food {
-    rpc Search(FoodRequest) returns (FoodResponse) {}
+    rpc Create(food.FoodCreateQuery) returns (food.FoodCreateResult) {}
+    rpc Delete(food.FoodDeleteQuery) returns (food.FoodDeleteQuery) {}
+    rpc SearchById(food.FoodSearchByIdQuery) returns (food.FoodSearchByIdResult) {}
 }

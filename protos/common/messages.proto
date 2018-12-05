@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package common;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/common";
+
+message Coord { 
+    double latitude = 1;
+    double longitude = 2;
+}
