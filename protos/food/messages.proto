@@ -5,8 +5,13 @@ option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/food";
 
 enum FoodGenre {
     Invalid = 0;
-    GenreA = 1;
-    GenreB = 2;
+    Japaneses = 1;
+    Westerns = 2;
+    Chineses = 3;
+    Sweets = 4;
+    Snacks = 5;
+    LightMeals = 6;
+    Drinks = 7;
 }
 
 message FoodRecord {
@@ -16,10 +21,8 @@ message FoodRecord {
 
 message FoodData {
     string name = 1;
-    string address = 2;
-    double latitude = 3;
-    double longitude = 4;
-    FoodGenre genre = 5;
+    uint64 price = 2;
+    FoodGenre genre = 3;
 }
 
 message FoodCreateQuery {

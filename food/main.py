@@ -9,12 +9,17 @@ from grpc_reflection.v1alpha import reflection
 
 
 class FoodServicer(service_pb2_grpc.FoodServicer):
+    def Create(self, request, context):
+        pass
+
+    def Delete(self, request, context):
+        pass
+
+    def Get(self, request, context):
+        pass
+
     def Search(self, request, context):
-        print(request.genre)
-        data = food_messages.FoodData(
-            name=request.name, address='hogehoge', latitude=request.latitude, longitude=request.longitude, genre=request.genre)
-        records = [food_messages.FoodRecord(id=1234, data=data)]
-        return food_messages.FoodSearchResult(records=records)
+        pass
 
 
 def serve():
