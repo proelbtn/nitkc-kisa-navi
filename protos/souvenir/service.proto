@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package souvenir;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/souvenir";
+
+import "souvenir/messages.proto";
+
+service Souvenir {
+    rpc Create(souvenir.SouvenirCreateQuery) returns (souvenir.SouvenirCreateResult) {}
+    rpc Delete(souvenir.SouvenirDeleteQuery) returns (souvenir.SouvenirDeleteQuery) {}
+    rpc Get(souvenir.SouvenirGetQuery) returns (souvenir.SouvenirGetResult) {}
+    rpc Search(souvenir.SouvenirSearchQuery) returns (souvenir.SouvenirSearchResult) {}
+}

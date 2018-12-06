@@ -1,0 +1,54 @@
+syntax = "proto3"; 
+
+package shop;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/shop";
+
+enum ShopGenre {
+    Invalid = 0;
+}
+
+message ShopRecord {
+    int64 id = 1;
+    ShopData data = 2;
+}
+
+message ShopData {
+    string name = 1;
+    uint64 price = 2;
+    ShopGenre genre = 3;
+}
+
+message ShopCreateQuery {
+    ShopData data = 1;
+}
+
+message ShopCreateResult {
+    ShopRecord record = 1;
+}
+
+message ShopDeleteQuery {
+    int64 id = 1;
+}
+
+message ShopDeleteResult {
+    int64 affected = 1;
+}
+
+message ShopGetQuery {
+    int64 id = 1;
+}
+
+message ShopGetResult {
+    ShopRecord record = 1;
+}
+
+message ShopSearchQuery {
+    string name = 1;
+    double latitude = 2;
+    double longitude = 3;
+    ShopGenre genre = 4;
+}
+
+message ShopSearchResult {
+    repeated ShopRecord records = 1;
+}

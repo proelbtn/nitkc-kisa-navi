@@ -102,7 +102,7 @@ func GetFoodCategoryObject() *graphql.Object {
 
 					res, err := client.Search(context.Background(), &food.FoodSearchQuery{
 						Name:      "test",
-						Genre:     food.FoodGenre_GenreA,
+						Genre:     food.FoodGenre_Invalid,
 						Latitude:  0.123,
 						Longitude: 0.123,
 					})

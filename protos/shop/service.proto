@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package shop;
+option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/shop";
+
+import "shop/messages.proto";
+
+service Shop {
+    rpc Create(shop.ShopCreateQuery) returns (shop.ShopCreateResult) {}
+    rpc Delete(shop.ShopDeleteQuery) returns (shop.ShopDeleteQuery) {}
+    rpc Get(shop.ShopGetQuery) returns (shop.ShopGetResult) {}
+    rpc Search(shop.ShopSearchQuery) returns (shop.ShopSearchResult) {}
+}
