@@ -73,7 +73,7 @@ export default Vue.extend({
       query: 'query { souvenirs { genres { id name } } }'
     })
       .then(res => {
-        this.genres.foods = res.foods.genres.sort()
+        this.genres = res.souvenirs.genres.sort()
       })
       .catch(console.error)
 
