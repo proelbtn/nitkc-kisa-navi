@@ -12,3 +12,11 @@ services:
     image: proelbtn/school-eve-navi-food
     ports:
       - 9001:80
+  shop:
+    image: proelbtn/school-eve-navi-shop
+    ports:
+      - 9002:80
+  souvenir:
+    image: proelbtn/school-eve-navi-souvenir
+    ports:
+      - 9003:80

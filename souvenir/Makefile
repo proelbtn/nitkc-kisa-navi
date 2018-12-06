@@ -1,6 +1,6 @@
 TAG := proelbtn/school-eve-navi-food
 BARGS := --tag ${TAG}
-RARGS := --interactive --tty --publish 30001:30001
+RARGS := --interactive --tty --publish 9003:80
 
 all:
 
