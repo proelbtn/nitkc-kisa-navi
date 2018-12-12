@@ -19,6 +19,7 @@ build: protobuf
 	cd food; make build
 	cd shop; make build
 	cd souvenir; make build
+	cd mysql; make build
 
 start: build
 	docker-compose up -d

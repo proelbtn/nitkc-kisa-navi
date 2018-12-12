@@ -24,5 +24,8 @@ services:
     image: mysql
     ports:
       - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
     environment:
+      - MYSQL_DATABASE=eve-navi
       - MYSQL_ROOT_PASSWORD=password
