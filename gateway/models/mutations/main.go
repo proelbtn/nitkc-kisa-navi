@@ -8,12 +8,12 @@ func GetMutationObject() *graphql.Object {
 	config := graphql.ObjectConfig{
 		Name: "Mutation",
 		Fields: graphql.Fields{
-			"createFoods":     CreateFoods(),
-			"deleteFoods":     DeleteFoods(),
-			"createShops":     CreateShops(),
-			"deleteShops":     DeleteShops(),
-			"createSouvenirs": CreateSouvenirs(),
-			"deleteSouvenirs": DeleteSouvenirs(),
+			"createFood":     CreateFood(),
+			"deleteFood":     DeleteFood(),
+			"createShop":     CreateShop(),
+			"deleteShop":     DeleteShop(),
+			"createSouvenir": CreateSouvenir(),
+			"deleteSouvenir": DeleteSouvenir(),
 		},
 	}
 

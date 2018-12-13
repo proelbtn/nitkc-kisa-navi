@@ -7,7 +7,7 @@ import (
 func CreateFood() *graphql.Field {
 	return &graphql.Field{
 		Type: graphql.Boolean,
-		Args: graphql.FieldConfigArgument{ // 引数の定義
+		Args: graphql.FieldConfigArgument{
 			"userName": &graphql.ArgumentConfig{
 				Type: graphql.NewNonNull(graphql.String),
 			},
@@ -22,15 +22,7 @@ func CreateFood() *graphql.Field {
 			},
 		},
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			userName, _ := params.Args["userName"].(string)
-			description, _ := params.Args["description"].(string)
-			photoURL, _ := params.Args["photoURL"].(string)
-			email, _ := params.Args["email"].(string)
-
-				panic(err)
-			}
-			infrastructure.NewUserRepository().Store(newUser)
-			return newUser, nil
+			return false, nil
 		},
 	}
 }
@@ -53,17 +45,7 @@ func DeleteFood() *graphql.Field {
 			},
 		},
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			userName, _ := params.Args["userName"].(string)
-			description, _ := params.Args["description"].(string)
-			photoURL, _ := params.Args["photoURL"].(string)
-			email, _ := params.Args["email"].(string)
-
-			newUser, err := user.NewUser(userName, description, photoURL, email)
-			if err != nil {
-				panic(err)
-			}
-			infrastructure.NewUserRepository().Store(newUser)
-			return newUser, nil
+			return false, nil
 		},
 	}
 }
