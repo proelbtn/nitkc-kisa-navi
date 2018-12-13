@@ -34,6 +34,11 @@ class FoodStub(object):
         request_serializer=food_dot_messages__pb2.FoodSearchQuery.SerializeToString,
         response_deserializer=food_dot_messages__pb2.FoodSearchResult.FromString,
         )
+    self.GetGenres = channel.unary_unary(
+        '/food.Food/GetGenres',
+        request_serializer=food_dot_messages__pb2.FoodEmptyQuery.SerializeToString,
+        response_deserializer=food_dot_messages__pb2.FoodGetGenresResult.FromString,
+        )
 
 
 class FoodServicer(object):
@@ -68,6 +73,13 @@ class FoodServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetGenres(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_FoodServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -90,6 +102,11 @@ def add_FoodServicer_to_server(servicer, server):
           servicer.Search,
           request_deserializer=food_dot_messages__pb2.FoodSearchQuery.FromString,
           response_serializer=food_dot_messages__pb2.FoodSearchResult.SerializeToString,
+      ),
+      'GetGenres': grpc.unary_unary_rpc_method_handler(
+          servicer.GetGenres,
+          request_deserializer=food_dot_messages__pb2.FoodEmptyQuery.FromString,
+          response_serializer=food_dot_messages__pb2.FoodGetGenresResult.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

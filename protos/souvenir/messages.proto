@@ -3,15 +3,9 @@ syntax = "proto3";
 package souvenir;
 option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/souvenir";
 
-enum SouvenirGenre {
-    Invalid = 0;
-    Japaneses = 1;
-    Westerns = 2;
-    Chineses = 3;
-    Sweets = 4;
-    Snacks = 5;
-    LightMeals = 6;
-    Drinks = 7;
+message SouvenirGenre {
+    uint64 id = 1;
+    string name = 2;
 }
 
 message SouvenirRecord {
@@ -22,7 +16,7 @@ message SouvenirRecord {
 message SouvenirData {
     string name = 1;
     uint64 price = 2;
-    SouvenirGenre genre = 3;
+    uint64 genre = 3;
 }
 
 message SouvenirCreateQuery {
@@ -53,9 +47,15 @@ message SouvenirSearchQuery {
     string name = 1;
     double latitude = 2;
     double longitude = 3;
-    SouvenirGenre genre = 4;
+    uint64 genre = 4;
 }
 
 message SouvenirSearchResult {
     repeated SouvenirRecord records = 1;
+}
+
+message SouvenirEmptyQuery {}
+
+message SouvenirGetGenresResult {
+    repeated SouvenirGenre genres = 1;
 }

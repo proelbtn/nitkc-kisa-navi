@@ -3,7 +3,6 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
-from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -20,30 +19,48 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='shop',
   syntax='proto3',
   serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/shop'),
-  serialized_pb=_b('\n\x13shop/messages.proto\x12\x04shop\"6\n\nShopRecord\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.shop.ShopData\"G\n\x08ShopData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\x1e\n\x05genre\x18\x03 \x01(\x0e\x32\x0f.shop.ShopGenre\"/\n\x0fShopCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.shop.ShopData\"4\n\x10ShopCreateResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"\x1d\n\x0fShopDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"$\n\x10ShopDeleteResult\x12\x10\n\x08\x61\x66\x66\x65\x63ted\x18\x01 \x01(\x03\"\x1a\n\x0cShopGetQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"1\n\rShopGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"d\n\x0fShopSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\x1e\n\x05genre\x18\x04 \x01(\x0e\x32\x0f.shop.ShopGenre\"5\n\x10ShopSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.shop.ShopRecord*\x18\n\tShopGenre\x12\x0b\n\x07Invalid\x10\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
+  serialized_pb=_b('\n\x13shop/messages.proto\x12\x04shop\"%\n\tShopGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"6\n\nShopRecord\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.shop.ShopData\"6\n\x08ShopData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\r\n\x05genre\x18\x03 \x01(\x04\"/\n\x0fShopCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.shop.ShopData\"4\n\x10ShopCreateResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"\x1d\n\x0fShopDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"$\n\x10ShopDeleteResult\x12\x10\n\x08\x61\x66\x66\x65\x63ted\x18\x01 \x01(\x03\"\x1a\n\x0cShopGetQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"1\n\rShopGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"S\n\x0fShopSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\r\n\x05genre\x18\x04 \x01(\x04\"5\n\x10ShopSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.shop.ShopRecord\"\x10\n\x0eShopEmptyQuery\"6\n\x13ShopGetGenresResult\x12\x1f\n\x06genres\x18\x01 \x03(\x0b\x32\x0f.shop.ShopGenreB9Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
 )
 
-_SHOPGENRE = _descriptor.EnumDescriptor(
+
+
+
+_SHOPGENRE = _descriptor.Descriptor(
   name='ShopGenre',
   full_name='shop.ShopGenre',
   filename=None,
   file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='Invalid', index=0, number=0,
-      serialized_options=None,
-      type=None),
-  ],
   containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='shop.ShopGenre.id', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='shop.ShopGenre.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
   serialized_options=None,
-  serialized_start=566,
-  serialized_end=590,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=29,
+  serialized_end=66,
 )
-_sym_db.RegisterEnumDescriptor(_SHOPGENRE)
-
-ShopGenre = enum_type_wrapper.EnumTypeWrapper(_SHOPGENRE)
-Invalid = 0
-
 
 
 _SHOPRECORD = _descriptor.Descriptor(
@@ -79,8 +96,8 @@ _SHOPRECORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29,
-  serialized_end=83,
+  serialized_start=68,
+  serialized_end=122,
 )
 
 
@@ -107,7 +124,7 @@ _SHOPDATA = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='genre', full_name='shop.ShopData.genre', index=2,
-      number=3, type=14, cpp_type=8, label=1,
+      number=3, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -124,8 +141,8 @@ _SHOPDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=85,
-  serialized_end=156,
+  serialized_start=124,
+  serialized_end=178,
 )
 
 
@@ -155,8 +172,8 @@ _SHOPCREATEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=158,
-  serialized_end=205,
+  serialized_start=180,
+  serialized_end=227,
 )
 
 
@@ -186,8 +203,8 @@ _SHOPCREATERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=207,
-  serialized_end=259,
+  serialized_start=229,
+  serialized_end=281,
 )
 
 
@@ -217,8 +234,8 @@ _SHOPDELETEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=261,
-  serialized_end=290,
+  serialized_start=283,
+  serialized_end=312,
 )
 
 
@@ -248,8 +265,8 @@ _SHOPDELETERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=292,
-  serialized_end=328,
+  serialized_start=314,
+  serialized_end=350,
 )
 
 
@@ -279,8 +296,8 @@ _SHOPGETQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=330,
-  serialized_end=356,
+  serialized_start=352,
+  serialized_end=378,
 )
 
 
@@ -310,8 +327,8 @@ _SHOPGETRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=358,
-  serialized_end=407,
+  serialized_start=380,
+  serialized_end=429,
 )
 
 
@@ -345,7 +362,7 @@ _SHOPSEARCHQUERY = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='genre', full_name='shop.ShopSearchQuery.genre', index=3,
-      number=4, type=14, cpp_type=8, label=1,
+      number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -362,8 +379,8 @@ _SHOPSEARCHQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=409,
-  serialized_end=509,
+  serialized_start=431,
+  serialized_end=514,
 )
 
 
@@ -393,17 +410,72 @@ _SHOPSEARCHRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=511,
-  serialized_end=564,
+  serialized_start=516,
+  serialized_end=569,
+)
+
+
+_SHOPEMPTYQUERY = _descriptor.Descriptor(
+  name='ShopEmptyQuery',
+  full_name='shop.ShopEmptyQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=571,
+  serialized_end=587,
+)
+
+
+_SHOPGETGENRESRESULT = _descriptor.Descriptor(
+  name='ShopGetGenresResult',
+  full_name='shop.ShopGetGenresResult',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='genres', full_name='shop.ShopGetGenresResult.genres', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=589,
+  serialized_end=643,
 )
 
 _SHOPRECORD.fields_by_name['data'].message_type = _SHOPDATA
-_SHOPDATA.fields_by_name['genre'].enum_type = _SHOPGENRE
 _SHOPCREATEQUERY.fields_by_name['data'].message_type = _SHOPDATA
 _SHOPCREATERESULT.fields_by_name['record'].message_type = _SHOPRECORD
 _SHOPGETRESULT.fields_by_name['record'].message_type = _SHOPRECORD
-_SHOPSEARCHQUERY.fields_by_name['genre'].enum_type = _SHOPGENRE
 _SHOPSEARCHRESULT.fields_by_name['records'].message_type = _SHOPRECORD
+_SHOPGETGENRESRESULT.fields_by_name['genres'].message_type = _SHOPGENRE
+DESCRIPTOR.message_types_by_name['ShopGenre'] = _SHOPGENRE
 DESCRIPTOR.message_types_by_name['ShopRecord'] = _SHOPRECORD
 DESCRIPTOR.message_types_by_name['ShopData'] = _SHOPDATA
 DESCRIPTOR.message_types_by_name['ShopCreateQuery'] = _SHOPCREATEQUERY
@@ -414,8 +486,16 @@ DESCRIPTOR.message_types_by_name['ShopGetQuery'] = _SHOPGETQUERY
 DESCRIPTOR.message_types_by_name['ShopGetResult'] = _SHOPGETRESULT
 DESCRIPTOR.message_types_by_name['ShopSearchQuery'] = _SHOPSEARCHQUERY
 DESCRIPTOR.message_types_by_name['ShopSearchResult'] = _SHOPSEARCHRESULT
-DESCRIPTOR.enum_types_by_name['ShopGenre'] = _SHOPGENRE
+DESCRIPTOR.message_types_by_name['ShopEmptyQuery'] = _SHOPEMPTYQUERY
+DESCRIPTOR.message_types_by_name['ShopGetGenresResult'] = _SHOPGETGENRESRESULT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ShopGenre = _reflection.GeneratedProtocolMessageType('ShopGenre', (_message.Message,), dict(
+  DESCRIPTOR = _SHOPGENRE,
+  __module__ = 'shop.messages_pb2'
+  # @@protoc_insertion_point(class_scope:shop.ShopGenre)
+  ))
+_sym_db.RegisterMessage(ShopGenre)
 
 ShopRecord = _reflection.GeneratedProtocolMessageType('ShopRecord', (_message.Message,), dict(
   DESCRIPTOR = _SHOPRECORD,
@@ -486,6 +566,20 @@ ShopSearchResult = _reflection.GeneratedProtocolMessageType('ShopSearchResult', 
   # @@protoc_insertion_point(class_scope:shop.ShopSearchResult)
   ))
 _sym_db.RegisterMessage(ShopSearchResult)
+
+ShopEmptyQuery = _reflection.GeneratedProtocolMessageType('ShopEmptyQuery', (_message.Message,), dict(
+  DESCRIPTOR = _SHOPEMPTYQUERY,
+  __module__ = 'shop.messages_pb2'
+  # @@protoc_insertion_point(class_scope:shop.ShopEmptyQuery)
+  ))
+_sym_db.RegisterMessage(ShopEmptyQuery)
+
+ShopGetGenresResult = _reflection.GeneratedProtocolMessageType('ShopGetGenresResult', (_message.Message,), dict(
+  DESCRIPTOR = _SHOPGETGENRESRESULT,
+  __module__ = 'shop.messages_pb2'
+  # @@protoc_insertion_point(class_scope:shop.ShopGetGenresResult)
+  ))
+_sym_db.RegisterMessage(ShopGetGenresResult)
 
 
 DESCRIPTOR._options = None

@@ -10,4 +10,5 @@ service Souvenir {
     rpc Delete(souvenir.SouvenirDeleteQuery) returns (souvenir.SouvenirDeleteQuery) {}
     rpc Get(souvenir.SouvenirGetQuery) returns (souvenir.SouvenirGetResult) {}
     rpc Search(souvenir.SouvenirSearchQuery) returns (souvenir.SouvenirSearchResult) {}
+    rpc GetGenres(souvenir.SouvenirEmptyQuery) returns (souvenir.SouvenirGetGenresResult) {}
 }

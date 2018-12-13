@@ -3,19 +3,13 @@ syntax = "proto3";
 package food;
 option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/food";
 
-enum FoodGenre {
-    Invalid = 0;
-    Japaneses = 1;
-    Westerns = 2;
-    Chineses = 3;
-    Sweets = 4;
-    Snacks = 5;
-    LightMeals = 6;
-    Drinks = 7;
+message FoodGenre {
+    uint64 id = 1;
+    string name = 2;
 }
 
 message FoodRecord {
-    int64 id = 1;
+    uint64 id = 1;
     FoodData data = 2;
 }
 
@@ -53,9 +47,15 @@ message FoodSearchQuery {
     string name = 1;
     double latitude = 2;
     double longitude = 3;
-    FoodGenre genre = 4;
+    uint64 genre = 4;
 }
 
 message FoodSearchResult {
     repeated FoodRecord records = 1;
+}
+
+message FoodEmptyQuery {}
+
+message FoodGetGenresResult {
+    repeated FoodGenre genres = 1;
 }

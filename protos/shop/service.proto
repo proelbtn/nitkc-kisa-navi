@@ -10,4 +10,5 @@ service Shop {
     rpc Delete(shop.ShopDeleteQuery) returns (shop.ShopDeleteQuery) {}
     rpc Get(shop.ShopGetQuery) returns (shop.ShopGetResult) {}
     rpc Search(shop.ShopSearchQuery) returns (shop.ShopSearchResult) {}
+    rpc GetGenres(shop.ShopEmptyQuery) returns (shop.ShopGetGenresResult) {}
 }

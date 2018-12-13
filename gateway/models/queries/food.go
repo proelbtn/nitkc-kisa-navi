@@ -1,23 +1,23 @@
-package models
+package queries
 
 import (
 	"context"
 	"errors"
 
-	"google.golang.org/grpc"
+	"github.com/proelbtn/school-eve-navi/gateway/resolvers"
 
 	"github.com/graphql-go/graphql"
-	"github.com/proelbtn/school-eve-navi/gateway/protos/shop"
+	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
 )
 
-func GetShopRecordObject() *graphql.Object {
+func GetFoodRecordObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "ShopRecord",
+		Name: "FoodRecord",
 		Fields: graphql.Fields{
 			"id": &graphql.Field{
 				Type: graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+					if obj, ok := p.Source.(*food.FoodRecord); ok {
 						return obj.Id, nil
 					}
 
@@ -27,7 +27,7 @@ func GetShopRecordObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+					if obj, ok := p.Source.(*food.FoodRecord); ok {
 						return obj.Data.Name, nil
 					}
 
@@ -40,15 +40,15 @@ func GetShopRecordObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetShopGenreObject() *graphql.Object {
+func GetFoodGenreObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "ShopGenre",
+		Name: "FoodGenre",
 		Fields: graphql.Fields{
 			"id": &graphql.Field{
 				Type: graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*Genre); ok {
-						return obj.id, nil
+					if obj, ok := p.Source.(*food.FoodGenre); ok {
+						return obj.Id, nil
 					}
 
 					return nil, errors.New("unable to cast")
@@ -57,8 +57,8 @@ func GetShopGenreObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*Genre); ok {
-						return obj.name, nil
+					if obj, ok := p.Source.(*food.FoodGenre); ok {
+						return obj.Name, nil
 					}
 
 					return nil, errors.New("unable to cast")
@@ -70,39 +70,37 @@ func GetShopGenreObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetShopCategoryObject() *graphql.Object {
+func GetFoodCategoryObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "ShopCategory",
+		Name: "FoodCategory",
 		Fields: graphql.Fields{
 			"genres": &graphql.Field{
-				Type: graphql.NewList(GetShopGenreObject()),
+				Type: graphql.NewList(GetFoodGenreObject()),
 				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
-					arr := make([]*Genre, 0)
-
-					for k, v := range shop.ShopGenre_name {
-						if k == 0 {
-							continue
-						}
-
-						arr = append(arr, &Genre{id: int64(k), name: v})
-					}
-
-					return arr, nil
-				},
-			},
-			"records": &graphql.Field{
-				Type: graphql.NewList(GetShopRecordObject()),
-				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
-					cc, err := grpc.Dial("shop:80", grpc.WithInsecure())
+					client, err := resolvers.GetFoodClient()
 					if err != nil {
 						return nil, err
 					}
 
-					client := shop.NewShopClient(cc)
+					res, err := client.GetGenres(context.Background(), &food.FoodEmptyQuery{})
+					if err != nil {
+						return nil, err
+					}
 
-					res, err := client.Search(context.Background(), &shop.ShopSearchQuery{
+					return res.Genres, nil
+				},
+			},
+			"records": &graphql.Field{
+				Type: graphql.NewList(GetFoodRecordObject()),
+				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
+					client, err := resolvers.GetFoodClient()
+					if err != nil {
+						return nil, err
+					}
+
+					res, err := client.Search(context.Background(), &food.FoodSearchQuery{
 						Name:      "test",
-						Genre:     shop.ShopGenre_Invalid,
+						Genre:     1,
 						Latitude:  0.123,
 						Longitude: 0.123,
 					})
@@ -119,9 +117,9 @@ func GetShopCategoryObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetShopCategoryField() *graphql.Field {
+func GetFoodCategoryField() *graphql.Field {
 	return &graphql.Field{
-		Type: GetShopCategoryObject(),
+		Type: GetFoodCategoryObject(),
 		Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
 			return true, nil
 		},

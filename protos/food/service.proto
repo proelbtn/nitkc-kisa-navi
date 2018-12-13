@@ -10,4 +10,5 @@ service Food {
     rpc Delete(food.FoodDeleteQuery) returns (food.FoodDeleteQuery) {}
     rpc Get(food.FoodGetQuery) returns (food.FoodGetResult) {}
     rpc Search(food.FoodSearchQuery) returns (food.FoodSearchResult) {}
+    rpc GetGenres(food.FoodEmptyQuery) returns (food.FoodGetGenresResult) {}
 }

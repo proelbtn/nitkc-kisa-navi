@@ -3,7 +3,6 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
-from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -20,65 +19,48 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='food',
   syntax='proto3',
   serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/food'),
-  serialized_pb=_b('\n\x13\x66ood/messages.proto\x12\x04\x66ood\"6\n\nFoodRecord\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.food.FoodData\"G\n\x08\x46oodData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\x1e\n\x05genre\x18\x03 \x01(\x0e\x32\x0f.food.FoodGenre\"/\n\x0f\x46oodCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.food.FoodData\"4\n\x10\x46oodCreateResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.food.FoodRecord\"\x1d\n\x0f\x46oodDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"$\n\x10\x46oodDeleteResult\x12\x10\n\x08\x61\x66\x66\x65\x63ted\x18\x01 \x01(\x03\"\x1a\n\x0c\x46oodGetQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"1\n\rFoodGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.food.FoodRecord\"d\n\x0f\x46oodSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\x1e\n\x05genre\x18\x04 \x01(\x0e\x32\x0f.food.FoodGenre\"5\n\x10\x46oodSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.food.FoodRecord*w\n\tFoodGenre\x12\x0b\n\x07Invalid\x10\x00\x12\r\n\tJapaneses\x10\x01\x12\x0c\n\x08Westerns\x10\x02\x12\x0c\n\x08\x43hineses\x10\x03\x12\n\n\x06Sweets\x10\x04\x12\n\n\x06Snacks\x10\x05\x12\x0e\n\nLightMeals\x10\x06\x12\n\n\x06\x44rinks\x10\x07\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/foodb\x06proto3')
+  serialized_pb=_b('\n\x13\x66ood/messages.proto\x12\x04\x66ood\"%\n\tFoodGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"6\n\nFoodRecord\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.food.FoodData\"G\n\x08\x46oodData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\x1e\n\x05genre\x18\x03 \x01(\x0b\x32\x0f.food.FoodGenre\"/\n\x0f\x46oodCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.food.FoodData\"4\n\x10\x46oodCreateResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.food.FoodRecord\"\x1d\n\x0f\x46oodDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"$\n\x10\x46oodDeleteResult\x12\x10\n\x08\x61\x66\x66\x65\x63ted\x18\x01 \x01(\x03\"\x1a\n\x0c\x46oodGetQuery\x12\n\n\x02id\x18\x01 \x01(\x03\"1\n\rFoodGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.food.FoodRecord\"S\n\x0f\x46oodSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\r\n\x05genre\x18\x04 \x01(\x04\"5\n\x10\x46oodSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.food.FoodRecord\"\x10\n\x0e\x46oodEmptyQuery\"6\n\x13\x46oodGetGenresResult\x12\x1f\n\x06genres\x18\x01 \x03(\x0b\x32\x0f.food.FoodGenreB9Z7github.com/proelbtn/school-eve-navi/gateway/protos/foodb\x06proto3')
 )
 
-_FOODGENRE = _descriptor.EnumDescriptor(
+
+
+
+_FOODGENRE = _descriptor.Descriptor(
   name='FoodGenre',
   full_name='food.FoodGenre',
   filename=None,
   file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='Invalid', index=0, number=0,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Japaneses', index=1, number=1,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Westerns', index=2, number=2,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Chineses', index=3, number=3,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Sweets', index=4, number=4,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Snacks', index=5, number=5,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='LightMeals', index=6, number=6,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Drinks', index=7, number=7,
-      serialized_options=None,
-      type=None),
-  ],
   containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='food.FoodGenre.id', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='food.FoodGenre.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
   serialized_options=None,
-  serialized_start=566,
-  serialized_end=685,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=29,
+  serialized_end=66,
 )
-_sym_db.RegisterEnumDescriptor(_FOODGENRE)
-
-FoodGenre = enum_type_wrapper.EnumTypeWrapper(_FOODGENRE)
-Invalid = 0
-Japaneses = 1
-Westerns = 2
-Chineses = 3
-Sweets = 4
-Snacks = 5
-LightMeals = 6
-Drinks = 7
-
 
 
 _FOODRECORD = _descriptor.Descriptor(
@@ -90,7 +72,7 @@ _FOODRECORD = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='id', full_name='food.FoodRecord.id', index=0,
-      number=1, type=3, cpp_type=2, label=1,
+      number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -114,8 +96,8 @@ _FOODRECORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29,
-  serialized_end=83,
+  serialized_start=68,
+  serialized_end=122,
 )
 
 
@@ -142,8 +124,8 @@ _FOODDATA = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='genre', full_name='food.FoodData.genre', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -159,8 +141,8 @@ _FOODDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=85,
-  serialized_end=156,
+  serialized_start=124,
+  serialized_end=195,
 )
 
 
@@ -190,8 +172,8 @@ _FOODCREATEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=158,
-  serialized_end=205,
+  serialized_start=197,
+  serialized_end=244,
 )
 
 
@@ -221,8 +203,8 @@ _FOODCREATERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=207,
-  serialized_end=259,
+  serialized_start=246,
+  serialized_end=298,
 )
 
 
@@ -252,8 +234,8 @@ _FOODDELETEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=261,
-  serialized_end=290,
+  serialized_start=300,
+  serialized_end=329,
 )
 
 
@@ -283,8 +265,8 @@ _FOODDELETERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=292,
-  serialized_end=328,
+  serialized_start=331,
+  serialized_end=367,
 )
 
 
@@ -314,8 +296,8 @@ _FOODGETQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=330,
-  serialized_end=356,
+  serialized_start=369,
+  serialized_end=395,
 )
 
 
@@ -345,8 +327,8 @@ _FOODGETRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=358,
-  serialized_end=407,
+  serialized_start=397,
+  serialized_end=446,
 )
 
 
@@ -380,7 +362,7 @@ _FOODSEARCHQUERY = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='genre', full_name='food.FoodSearchQuery.genre', index=3,
-      number=4, type=14, cpp_type=8, label=1,
+      number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -397,8 +379,8 @@ _FOODSEARCHQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=409,
-  serialized_end=509,
+  serialized_start=448,
+  serialized_end=531,
 )
 
 
@@ -428,17 +410,73 @@ _FOODSEARCHRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=511,
-  serialized_end=564,
+  serialized_start=533,
+  serialized_end=586,
+)
+
+
+_FOODEMPTYQUERY = _descriptor.Descriptor(
+  name='FoodEmptyQuery',
+  full_name='food.FoodEmptyQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=588,
+  serialized_end=604,
+)
+
+
+_FOODGETGENRESRESULT = _descriptor.Descriptor(
+  name='FoodGetGenresResult',
+  full_name='food.FoodGetGenresResult',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='genres', full_name='food.FoodGetGenresResult.genres', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=606,
+  serialized_end=660,
 )
 
 _FOODRECORD.fields_by_name['data'].message_type = _FOODDATA
-_FOODDATA.fields_by_name['genre'].enum_type = _FOODGENRE
+_FOODDATA.fields_by_name['genre'].message_type = _FOODGENRE
 _FOODCREATEQUERY.fields_by_name['data'].message_type = _FOODDATA
 _FOODCREATERESULT.fields_by_name['record'].message_type = _FOODRECORD
 _FOODGETRESULT.fields_by_name['record'].message_type = _FOODRECORD
-_FOODSEARCHQUERY.fields_by_name['genre'].enum_type = _FOODGENRE
 _FOODSEARCHRESULT.fields_by_name['records'].message_type = _FOODRECORD
+_FOODGETGENRESRESULT.fields_by_name['genres'].message_type = _FOODGENRE
+DESCRIPTOR.message_types_by_name['FoodGenre'] = _FOODGENRE
 DESCRIPTOR.message_types_by_name['FoodRecord'] = _FOODRECORD
 DESCRIPTOR.message_types_by_name['FoodData'] = _FOODDATA
 DESCRIPTOR.message_types_by_name['FoodCreateQuery'] = _FOODCREATEQUERY
@@ -449,8 +487,16 @@ DESCRIPTOR.message_types_by_name['FoodGetQuery'] = _FOODGETQUERY
 DESCRIPTOR.message_types_by_name['FoodGetResult'] = _FOODGETRESULT
 DESCRIPTOR.message_types_by_name['FoodSearchQuery'] = _FOODSEARCHQUERY
 DESCRIPTOR.message_types_by_name['FoodSearchResult'] = _FOODSEARCHRESULT
-DESCRIPTOR.enum_types_by_name['FoodGenre'] = _FOODGENRE
+DESCRIPTOR.message_types_by_name['FoodEmptyQuery'] = _FOODEMPTYQUERY
+DESCRIPTOR.message_types_by_name['FoodGetGenresResult'] = _FOODGETGENRESRESULT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+FoodGenre = _reflection.GeneratedProtocolMessageType('FoodGenre', (_message.Message,), dict(
+  DESCRIPTOR = _FOODGENRE,
+  __module__ = 'food.messages_pb2'
+  # @@protoc_insertion_point(class_scope:food.FoodGenre)
+  ))
+_sym_db.RegisterMessage(FoodGenre)
 
 FoodRecord = _reflection.GeneratedProtocolMessageType('FoodRecord', (_message.Message,), dict(
   DESCRIPTOR = _FOODRECORD,
@@ -521,6 +567,20 @@ FoodSearchResult = _reflection.GeneratedProtocolMessageType('FoodSearchResult', 
   # @@protoc_insertion_point(class_scope:food.FoodSearchResult)
   ))
 _sym_db.RegisterMessage(FoodSearchResult)
+
+FoodEmptyQuery = _reflection.GeneratedProtocolMessageType('FoodEmptyQuery', (_message.Message,), dict(
+  DESCRIPTOR = _FOODEMPTYQUERY,
+  __module__ = 'food.messages_pb2'
+  # @@protoc_insertion_point(class_scope:food.FoodEmptyQuery)
+  ))
+_sym_db.RegisterMessage(FoodEmptyQuery)
+
+FoodGetGenresResult = _reflection.GeneratedProtocolMessageType('FoodGetGenresResult', (_message.Message,), dict(
+  DESCRIPTOR = _FOODGETGENRESRESULT,
+  __module__ = 'food.messages_pb2'
+  # @@protoc_insertion_point(class_scope:food.FoodGetGenresResult)
+  ))
+_sym_db.RegisterMessage(FoodGetGenresResult)
 
 
 DESCRIPTOR._options = None

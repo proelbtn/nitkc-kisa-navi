@@ -20,47 +20,51 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type SouvenirGenre int32
-
-const (
-	SouvenirGenre_Invalid    SouvenirGenre = 0
-	SouvenirGenre_Japaneses  SouvenirGenre = 1
-	SouvenirGenre_Westerns   SouvenirGenre = 2
-	SouvenirGenre_Chineses   SouvenirGenre = 3
-	SouvenirGenre_Sweets     SouvenirGenre = 4
-	SouvenirGenre_Snacks     SouvenirGenre = 5
-	SouvenirGenre_LightMeals SouvenirGenre = 6
-	SouvenirGenre_Drinks     SouvenirGenre = 7
-)
-
-var SouvenirGenre_name = map[int32]string{
-	0: "Invalid",
-	1: "Japaneses",
-	2: "Westerns",
-	3: "Chineses",
-	4: "Sweets",
-	5: "Snacks",
-	6: "LightMeals",
-	7: "Drinks",
+type SouvenirGenre struct {
+	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-var SouvenirGenre_value = map[string]int32{
-	"Invalid":    0,
-	"Japaneses":  1,
-	"Westerns":   2,
-	"Chineses":   3,
-	"Sweets":     4,
-	"Snacks":     5,
-	"LightMeals": 6,
-	"Drinks":     7,
-}
-
-func (x SouvenirGenre) String() string {
-	return proto.EnumName(SouvenirGenre_name, int32(x))
-}
-
-func (SouvenirGenre) EnumDescriptor() ([]byte, []int) {
+func (m *SouvenirGenre) Reset()         { *m = SouvenirGenre{} }
+func (m *SouvenirGenre) String() string { return proto.CompactTextString(m) }
+func (*SouvenirGenre) ProtoMessage()    {}
+func (*SouvenirGenre) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a8f236c690c7bcc2, []int{0}
+}
+
+func (m *SouvenirGenre) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SouvenirGenre.Unmarshal(m, b)
+}
+func (m *SouvenirGenre) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SouvenirGenre.Marshal(b, m, deterministic)
+}
+func (m *SouvenirGenre) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SouvenirGenre.Merge(m, src)
+}
+func (m *SouvenirGenre) XXX_Size() int {
+	return xxx_messageInfo_SouvenirGenre.Size(m)
+}
+func (m *SouvenirGenre) XXX_DiscardUnknown() {
+	xxx_messageInfo_SouvenirGenre.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SouvenirGenre proto.InternalMessageInfo
+
+func (m *SouvenirGenre) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *SouvenirGenre) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
 }
 
 type SouvenirRecord struct {
@@ -75,7 +79,7 @@ func (m *SouvenirRecord) Reset()         { *m = SouvenirRecord{} }
 func (m *SouvenirRecord) String() string { return proto.CompactTextString(m) }
 func (*SouvenirRecord) ProtoMessage()    {}
 func (*SouvenirRecord) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{0}
+	return fileDescriptor_a8f236c690c7bcc2, []int{1}
 }
 
 func (m *SouvenirRecord) XXX_Unmarshal(b []byte) error {
@@ -111,19 +115,19 @@ func (m *SouvenirRecord) GetData() *SouvenirData {
 }
 
 type SouvenirData struct {
-	Name                 string        `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Price                uint64        `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
-	Genre                SouvenirGenre `protobuf:"varint,3,opt,name=genre,proto3,enum=souvenir.SouvenirGenre" json:"genre,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Price                uint64   `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
+	Genre                uint64   `protobuf:"varint,3,opt,name=genre,proto3" json:"genre,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *SouvenirData) Reset()         { *m = SouvenirData{} }
 func (m *SouvenirData) String() string { return proto.CompactTextString(m) }
 func (*SouvenirData) ProtoMessage()    {}
 func (*SouvenirData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{1}
+	return fileDescriptor_a8f236c690c7bcc2, []int{2}
 }
 
 func (m *SouvenirData) XXX_Unmarshal(b []byte) error {
@@ -158,11 +162,11 @@ func (m *SouvenirData) GetPrice() uint64 {
 	return 0
 }
 
-func (m *SouvenirData) GetGenre() SouvenirGenre {
+func (m *SouvenirData) GetGenre() uint64 {
 	if m != nil {
 		return m.Genre
 	}
-	return SouvenirGenre_Invalid
+	return 0
 }
 
 type SouvenirCreateQuery struct {
@@ -176,7 +180,7 @@ func (m *SouvenirCreateQuery) Reset()         { *m = SouvenirCreateQuery{} }
 func (m *SouvenirCreateQuery) String() string { return proto.CompactTextString(m) }
 func (*SouvenirCreateQuery) ProtoMessage()    {}
 func (*SouvenirCreateQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{2}
+	return fileDescriptor_a8f236c690c7bcc2, []int{3}
 }
 
 func (m *SouvenirCreateQuery) XXX_Unmarshal(b []byte) error {
@@ -215,7 +219,7 @@ func (m *SouvenirCreateResult) Reset()         { *m = SouvenirCreateResult{} }
 func (m *SouvenirCreateResult) String() string { return proto.CompactTextString(m) }
 func (*SouvenirCreateResult) ProtoMessage()    {}
 func (*SouvenirCreateResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{3}
+	return fileDescriptor_a8f236c690c7bcc2, []int{4}
 }
 
 func (m *SouvenirCreateResult) XXX_Unmarshal(b []byte) error {
@@ -254,7 +258,7 @@ func (m *SouvenirDeleteQuery) Reset()         { *m = SouvenirDeleteQuery{} }
 func (m *SouvenirDeleteQuery) String() string { return proto.CompactTextString(m) }
 func (*SouvenirDeleteQuery) ProtoMessage()    {}
 func (*SouvenirDeleteQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{4}
+	return fileDescriptor_a8f236c690c7bcc2, []int{5}
 }
 
 func (m *SouvenirDeleteQuery) XXX_Unmarshal(b []byte) error {
@@ -293,7 +297,7 @@ func (m *SouvenirDeleteResult) Reset()         { *m = SouvenirDeleteResult{} }
 func (m *SouvenirDeleteResult) String() string { return proto.CompactTextString(m) }
 func (*SouvenirDeleteResult) ProtoMessage()    {}
 func (*SouvenirDeleteResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{5}
+	return fileDescriptor_a8f236c690c7bcc2, []int{6}
 }
 
 func (m *SouvenirDeleteResult) XXX_Unmarshal(b []byte) error {
@@ -332,7 +336,7 @@ func (m *SouvenirGetQuery) Reset()         { *m = SouvenirGetQuery{} }
 func (m *SouvenirGetQuery) String() string { return proto.CompactTextString(m) }
 func (*SouvenirGetQuery) ProtoMessage()    {}
 func (*SouvenirGetQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{6}
+	return fileDescriptor_a8f236c690c7bcc2, []int{7}
 }
 
 func (m *SouvenirGetQuery) XXX_Unmarshal(b []byte) error {
@@ -371,7 +375,7 @@ func (m *SouvenirGetResult) Reset()         { *m = SouvenirGetResult{} }
 func (m *SouvenirGetResult) String() string { return proto.CompactTextString(m) }
 func (*SouvenirGetResult) ProtoMessage()    {}
 func (*SouvenirGetResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{7}
+	return fileDescriptor_a8f236c690c7bcc2, []int{8}
 }
 
 func (m *SouvenirGetResult) XXX_Unmarshal(b []byte) error {
@@ -400,20 +404,20 @@ func (m *SouvenirGetResult) GetRecord() *SouvenirRecord {
 }
 
 type SouvenirSearchQuery struct {
-	Name                 string        `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Latitude             float64       `protobuf:"fixed64,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
-	Longitude            float64       `protobuf:"fixed64,3,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	Genre                SouvenirGenre `protobuf:"varint,4,opt,name=genre,proto3,enum=souvenir.SouvenirGenre" json:"genre,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Latitude             float64  `protobuf:"fixed64,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude            float64  `protobuf:"fixed64,3,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Genre                uint64   `protobuf:"varint,4,opt,name=genre,proto3" json:"genre,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *SouvenirSearchQuery) Reset()         { *m = SouvenirSearchQuery{} }
 func (m *SouvenirSearchQuery) String() string { return proto.CompactTextString(m) }
 func (*SouvenirSearchQuery) ProtoMessage()    {}
 func (*SouvenirSearchQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{8}
+	return fileDescriptor_a8f236c690c7bcc2, []int{9}
 }
 
 func (m *SouvenirSearchQuery) XXX_Unmarshal(b []byte) error {
@@ -455,11 +459,11 @@ func (m *SouvenirSearchQuery) GetLongitude() float64 {
 	return 0
 }
 
-func (m *SouvenirSearchQuery) GetGenre() SouvenirGenre {
+func (m *SouvenirSearchQuery) GetGenre() uint64 {
 	if m != nil {
 		return m.Genre
 	}
-	return SouvenirGenre_Invalid
+	return 0
 }
 
 type SouvenirSearchResult struct {
@@ -473,7 +477,7 @@ func (m *SouvenirSearchResult) Reset()         { *m = SouvenirSearchResult{} }
 func (m *SouvenirSearchResult) String() string { return proto.CompactTextString(m) }
 func (*SouvenirSearchResult) ProtoMessage()    {}
 func (*SouvenirSearchResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a8f236c690c7bcc2, []int{9}
+	return fileDescriptor_a8f236c690c7bcc2, []int{10}
 }
 
 func (m *SouvenirSearchResult) XXX_Unmarshal(b []byte) error {
@@ -501,8 +505,78 @@ func (m *SouvenirSearchResult) GetRecords() []*SouvenirRecord {
 	return nil
 }
 
+type SouvenirEmptyQuery struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SouvenirEmptyQuery) Reset()         { *m = SouvenirEmptyQuery{} }
+func (m *SouvenirEmptyQuery) String() string { return proto.CompactTextString(m) }
+func (*SouvenirEmptyQuery) ProtoMessage()    {}
+func (*SouvenirEmptyQuery) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a8f236c690c7bcc2, []int{11}
+}
+
+func (m *SouvenirEmptyQuery) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SouvenirEmptyQuery.Unmarshal(m, b)
+}
+func (m *SouvenirEmptyQuery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SouvenirEmptyQuery.Marshal(b, m, deterministic)
+}
+func (m *SouvenirEmptyQuery) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SouvenirEmptyQuery.Merge(m, src)
+}
+func (m *SouvenirEmptyQuery) XXX_Size() int {
+	return xxx_messageInfo_SouvenirEmptyQuery.Size(m)
+}
+func (m *SouvenirEmptyQuery) XXX_DiscardUnknown() {
+	xxx_messageInfo_SouvenirEmptyQuery.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SouvenirEmptyQuery proto.InternalMessageInfo
+
+type SouvenirGetGenresResult struct {
+	Genres               []*SouvenirGenre `protobuf:"bytes,1,rep,name=genres,proto3" json:"genres,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *SouvenirGetGenresResult) Reset()         { *m = SouvenirGetGenresResult{} }
+func (m *SouvenirGetGenresResult) String() string { return proto.CompactTextString(m) }
+func (*SouvenirGetGenresResult) ProtoMessage()    {}
+func (*SouvenirGetGenresResult) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a8f236c690c7bcc2, []int{12}
+}
+
+func (m *SouvenirGetGenresResult) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SouvenirGetGenresResult.Unmarshal(m, b)
+}
+func (m *SouvenirGetGenresResult) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SouvenirGetGenresResult.Marshal(b, m, deterministic)
+}
+func (m *SouvenirGetGenresResult) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SouvenirGetGenresResult.Merge(m, src)
+}
+func (m *SouvenirGetGenresResult) XXX_Size() int {
+	return xxx_messageInfo_SouvenirGetGenresResult.Size(m)
+}
+func (m *SouvenirGetGenresResult) XXX_DiscardUnknown() {
+	xxx_messageInfo_SouvenirGetGenresResult.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SouvenirGetGenresResult proto.InternalMessageInfo
+
+func (m *SouvenirGetGenresResult) GetGenres() []*SouvenirGenre {
+	if m != nil {
+		return m.Genres
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterEnum("souvenir.SouvenirGenre", SouvenirGenre_name, SouvenirGenre_value)
+	proto.RegisterType((*SouvenirGenre)(nil), "souvenir.SouvenirGenre")
 	proto.RegisterType((*SouvenirRecord)(nil), "souvenir.SouvenirRecord")
 	proto.RegisterType((*SouvenirData)(nil), "souvenir.SouvenirData")
 	proto.RegisterType((*SouvenirCreateQuery)(nil), "souvenir.SouvenirCreateQuery")
@@ -513,40 +587,39 @@ func init() {
 	proto.RegisterType((*SouvenirGetResult)(nil), "souvenir.SouvenirGetResult")
 	proto.RegisterType((*SouvenirSearchQuery)(nil), "souvenir.SouvenirSearchQuery")
 	proto.RegisterType((*SouvenirSearchResult)(nil), "souvenir.SouvenirSearchResult")
+	proto.RegisterType((*SouvenirEmptyQuery)(nil), "souvenir.SouvenirEmptyQuery")
+	proto.RegisterType((*SouvenirGetGenresResult)(nil), "souvenir.SouvenirGetGenresResult")
 }
 
 func init() { proto.RegisterFile("souvenir/messages.proto", fileDescriptor_a8f236c690c7bcc2) }
 
 var fileDescriptor_a8f236c690c7bcc2 = []byte{
-	// 467 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x4d, 0x6b, 0xdb, 0x40,
-	0x10, 0xad, 0x2c, 0xf9, 0x6b, 0x92, 0x18, 0x75, 0x1b, 0x1a, 0x11, 0x7a, 0x30, 0x82, 0x82, 0x09,
-	0xd8, 0x2a, 0xee, 0xb1, 0xf4, 0xd0, 0xc6, 0xa5, 0x6d, 0x48, 0x0f, 0x95, 0x0f, 0x85, 0xde, 0xc6,
-	0xd2, 0x44, 0x5a, 0x22, 0xaf, 0xcc, 0xee, 0xca, 0x21, 0xf4, 0x5f, 0xf4, 0x17, 0x17, 0xef, 0x4a,
-	0x56, 0xd2, 0x84, 0x12, 0x7a, 0xdb, 0x99, 0xf7, 0xf4, 0xe6, 0xbd, 0x19, 0x04, 0x27, 0xaa, 0xac,
-	0xb6, 0x24, 0xb8, 0x8c, 0xd6, 0xa4, 0x14, 0x66, 0xa4, 0x66, 0x1b, 0x59, 0xea, 0x92, 0x0d, 0x1a,
-	0x20, 0xbc, 0x84, 0xd1, 0xb2, 0x7e, 0xc7, 0x94, 0x94, 0x32, 0x65, 0x23, 0xe8, 0xf0, 0x34, 0x70,
-	0xc6, 0xce, 0xc4, 0x8d, 0x3b, 0x3c, 0x65, 0x67, 0xe0, 0xa5, 0xa8, 0x31, 0xe8, 0x8c, 0x9d, 0xc9,
-	0xc1, 0xfc, 0xe5, 0xac, 0xf9, 0x74, 0xd6, 0x7c, 0xb7, 0x40, 0x8d, 0xb1, 0xe1, 0x84, 0x19, 0x1c,
-	0xde, 0xed, 0x32, 0x06, 0x9e, 0xc0, 0x35, 0x19, 0xb5, 0x61, 0x6c, 0xde, 0xec, 0x18, 0xba, 0x1b,
-	0xc9, 0x13, 0x32, 0x82, 0x5e, 0x6c, 0x0b, 0x36, 0x85, 0x6e, 0x46, 0x42, 0x52, 0xe0, 0x8e, 0x9d,
-	0xc9, 0x68, 0x7e, 0xf2, 0x70, 0xcc, 0xe7, 0x1d, 0x1c, 0x5b, 0x56, 0xf8, 0x01, 0x5e, 0x34, 0xfd,
-	0x73, 0x49, 0xa8, 0xe9, 0x7b, 0x45, 0xf2, 0x76, 0xef, 0xd5, 0x79, 0x82, 0xd7, 0x2f, 0x70, 0x7c,
-	0x5f, 0x22, 0x26, 0x55, 0x15, 0x9a, 0xbd, 0x81, 0x9e, 0x34, 0x9b, 0xa8, 0x55, 0x82, 0x87, 0x2a,
-	0x76, 0x53, 0x71, 0xcd, 0x0b, 0x5f, 0xb7, 0x66, 0x16, 0x54, 0x50, 0x63, 0xe6, 0xaf, 0x45, 0x86,
-	0xf3, 0x76, 0xa0, 0xa5, 0xd5, 0x03, 0x4f, 0x61, 0x80, 0x57, 0x57, 0x94, 0x68, 0x6a, 0xd8, 0xfb,
-	0x3a, 0x0c, 0xc1, 0x6f, 0xf3, 0xeb, 0xc7, 0x75, 0x3f, 0xc1, 0xf3, 0x3b, 0x9c, 0xff, 0x4e, 0xf1,
-	0xdb, 0x69, 0x63, 0x2c, 0x09, 0x65, 0x92, 0xdb, 0x71, 0x8f, 0xdd, 0xf0, 0x14, 0x06, 0x05, 0x6a,
-	0xae, 0xab, 0xd4, 0x9e, 0xd1, 0x89, 0xf7, 0x35, 0x7b, 0x05, 0xc3, 0xa2, 0x14, 0x99, 0x05, 0x5d,
-	0x03, 0xb6, 0x8d, 0xf6, 0xce, 0xde, 0x93, 0xee, 0x7c, 0xd1, 0xee, 0xcc, 0x7a, 0xaa, 0xe3, 0xcd,
-	0xa1, 0x6f, 0x6d, 0xab, 0xc0, 0x19, 0xbb, 0xff, 0xcc, 0xd7, 0x10, 0xcf, 0x7e, 0xc1, 0xd1, 0xbd,
-	0x19, 0xec, 0x00, 0xfa, 0x5f, 0xc5, 0x16, 0x0b, 0x9e, 0xfa, 0xcf, 0xd8, 0x11, 0x0c, 0x2f, 0x70,
-	0x83, 0x82, 0x14, 0x29, 0xdf, 0x61, 0x87, 0x30, 0xf8, 0x41, 0x4a, 0x93, 0x14, 0xca, 0xef, 0xec,
-	0xaa, 0xf3, 0x9c, 0x5b, 0xcc, 0x65, 0x00, 0xbd, 0xe5, 0x0d, 0x91, 0x56, 0xbe, 0x67, 0xde, 0x02,
-	0x93, 0x6b, 0xe5, 0x77, 0xd9, 0x08, 0xe0, 0x92, 0x67, 0xb9, 0xfe, 0x46, 0x58, 0x28, 0xbf, 0xb7,
-	0xc3, 0x16, 0x92, 0x8b, 0x6b, 0xe5, 0xf7, 0x3f, 0xbe, 0xff, 0xf9, 0x2e, 0xe3, 0x3a, 0xaf, 0x56,
-	0xb3, 0xa4, 0x5c, 0x47, 0x1b, 0x59, 0x52, 0xb1, 0xd2, 0x22, 0x52, 0x49, 0x5e, 0x96, 0xc5, 0x94,
-	0xb6, 0x34, 0x15, 0xb8, 0xe5, 0x51, 0x86, 0x9a, 0x6e, 0xf0, 0x36, 0x32, 0xbf, 0xa9, 0x8a, 0x9a,
-	0x4c, 0xab, 0x9e, 0x69, 0xbc, 0xfd, 0x13, 0x00, 0x00, 0xff, 0xff, 0xc5, 0x52, 0xe5, 0x7f, 0xd2,
-	0x03, 0x00, 0x00,
+	// 421 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x51, 0x8b, 0xd4, 0x30,
+	0x10, 0xa6, 0xdb, 0xba, 0xee, 0x8d, 0x7a, 0x68, 0x5c, 0xdc, 0x72, 0xf8, 0xb0, 0x04, 0x84, 0x43,
+	0xb8, 0x56, 0xf6, 0x1e, 0xc5, 0x07, 0xf5, 0x0e, 0xe5, 0x10, 0xc1, 0xdc, 0x9b, 0x6f, 0xd9, 0x76,
+	0xae, 0x5b, 0x68, 0x9b, 0x92, 0xa4, 0x2b, 0xfd, 0xf7, 0x72, 0x49, 0xd3, 0x54, 0x77, 0x11, 0xb9,
+	0xb7, 0xcc, 0xcc, 0x37, 0xf3, 0x7d, 0xdf, 0x0c, 0x81, 0x95, 0x12, 0xdd, 0x1e, 0x9b, 0x52, 0xa6,
+	0x35, 0x2a, 0xc5, 0x0b, 0x54, 0x49, 0x2b, 0x85, 0x16, 0x64, 0xe1, 0x0a, 0xf4, 0x12, 0x9e, 0xdd,
+	0x0e, 0xef, 0x2f, 0xd8, 0x48, 0x24, 0xa7, 0x30, 0x2b, 0xf3, 0x38, 0x58, 0x07, 0xe7, 0x11, 0x9b,
+	0x95, 0x39, 0x21, 0x10, 0x35, 0xbc, 0xc6, 0x78, 0xb6, 0x0e, 0xce, 0x4f, 0x98, 0x79, 0xd3, 0x6f,
+	0x70, 0xea, 0x9a, 0x18, 0x66, 0x42, 0xe6, 0x93, 0xae, 0xd0, 0x74, 0xbd, 0x85, 0x28, 0xe7, 0x9a,
+	0x9b, 0xae, 0x27, 0x9b, 0x57, 0x89, 0xe3, 0x4b, 0x5c, 0xdf, 0x15, 0xd7, 0x9c, 0x19, 0x0c, 0xfd,
+	0x0e, 0x4f, 0xa7, 0xd9, 0x91, 0x31, 0xf0, 0x8c, 0x64, 0x09, 0x8f, 0x5a, 0x59, 0x66, 0x56, 0x46,
+	0xc4, 0x6c, 0x70, 0x9f, 0x2d, 0xee, 0x45, 0xc7, 0xa1, 0xcd, 0x9a, 0x80, 0x7e, 0x84, 0x97, 0x6e,
+	0xde, 0x67, 0x89, 0x5c, 0xe3, 0x8f, 0x0e, 0x65, 0x3f, 0x4a, 0x0a, 0xfe, 0x43, 0xd2, 0x57, 0x58,
+	0xfe, 0x39, 0x82, 0xa1, 0xea, 0x2a, 0x4d, 0xde, 0xc1, 0x5c, 0x1a, 0xc3, 0xc3, 0x94, 0xf8, 0x70,
+	0x8a, 0x5d, 0x08, 0x1b, 0x70, 0xf4, 0x8d, 0x17, 0x73, 0x85, 0x15, 0x3a, 0x31, 0x7f, 0xed, 0x8b,
+	0x6e, 0x3c, 0xa1, 0x85, 0x0d, 0x84, 0x67, 0xb0, 0xe0, 0x77, 0x77, 0x98, 0x69, 0x74, 0xe8, 0x31,
+	0xa6, 0x14, 0x9e, 0xfb, 0xd3, 0xe9, 0xe3, 0x73, 0xaf, 0xe1, 0xc5, 0x04, 0xf3, 0x60, 0x17, 0xbd,
+	0x77, 0x71, 0x8b, 0x5c, 0x66, 0x3b, 0xcb, 0x76, 0xec, 0x52, 0x67, 0xb0, 0xa8, 0xb8, 0x2e, 0x75,
+	0x97, 0xdb, 0x63, 0x05, 0x6c, 0x8c, 0xc9, 0x6b, 0x38, 0xa9, 0x44, 0x53, 0xd8, 0x62, 0x68, 0x8a,
+	0x3e, 0xe1, 0xaf, 0x19, 0x4d, 0xaf, 0x79, 0xe3, 0x37, 0x63, 0xa9, 0x07, 0x13, 0x1b, 0x78, 0x6c,
+	0xc5, 0xa9, 0x38, 0x58, 0x87, 0xff, 0x74, 0xe1, 0x80, 0x74, 0x09, 0xc4, 0x95, 0xae, 0xeb, 0x56,
+	0xf7, 0xc6, 0x05, 0xbd, 0x81, 0xd5, 0x64, 0x47, 0xe6, 0x17, 0xa8, 0x81, 0x24, 0x85, 0xb9, 0x51,
+	0xe1, 0x38, 0x56, 0x87, 0x1c, 0x06, 0xcf, 0x06, 0xd8, 0xa7, 0x0f, 0x3f, 0xdf, 0x17, 0xa5, 0xde,
+	0x75, 0xdb, 0x24, 0x13, 0x75, 0xda, 0x4a, 0x81, 0xd5, 0x56, 0x37, 0xa9, 0xca, 0x76, 0x42, 0x54,
+	0x17, 0xb8, 0xc7, 0x8b, 0x86, 0xef, 0xcb, 0xb4, 0xe0, 0x1a, 0x7f, 0xf1, 0x3e, 0x35, 0xbf, 0x51,
+	0xa5, 0x6e, 0xe8, 0x76, 0x6e, 0x12, 0x97, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x28, 0xb6, 0x49,
+	0xab, 0xb9, 0x03, 0x00, 0x00,
 }

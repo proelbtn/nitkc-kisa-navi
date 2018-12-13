@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='shop',
   syntax='proto3',
   serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/shop'),
-  serialized_pb=_b('\n\x12shop/service.proto\x12\x04shop\x1a\x13shop/messages.proto2\xe8\x01\n\x04Shop\x12\x39\n\x06\x43reate\x12\x15.shop.ShopCreateQuery\x1a\x16.shop.ShopCreateResult\"\x00\x12\x38\n\x06\x44\x65lete\x12\x15.shop.ShopDeleteQuery\x1a\x15.shop.ShopDeleteQuery\"\x00\x12\x30\n\x03Get\x12\x12.shop.ShopGetQuery\x1a\x13.shop.ShopGetResult\"\x00\x12\x39\n\x06Search\x12\x15.shop.ShopSearchQuery\x1a\x16.shop.ShopSearchResult\"\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
+  serialized_pb=_b('\n\x12shop/service.proto\x12\x04shop\x1a\x13shop/messages.proto2\xa8\x02\n\x04Shop\x12\x39\n\x06\x43reate\x12\x15.shop.ShopCreateQuery\x1a\x16.shop.ShopCreateResult\"\x00\x12\x38\n\x06\x44\x65lete\x12\x15.shop.ShopDeleteQuery\x1a\x15.shop.ShopDeleteQuery\"\x00\x12\x30\n\x03Get\x12\x12.shop.ShopGetQuery\x1a\x13.shop.ShopGetResult\"\x00\x12\x39\n\x06Search\x12\x15.shop.ShopSearchQuery\x1a\x16.shop.ShopSearchResult\"\x00\x12>\n\tGetGenres\x12\x14.shop.ShopEmptyQuery\x1a\x19.shop.ShopGetGenresResult\"\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
   ,
   dependencies=[shop_dot_messages__pb2.DESCRIPTOR,])
 
@@ -38,7 +38,7 @@ _SHOP = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=50,
-  serialized_end=282,
+  serialized_end=346,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -74,6 +74,15 @@ _SHOP = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=shop_dot_messages__pb2._SHOPSEARCHQUERY,
     output_type=shop_dot_messages__pb2._SHOPSEARCHRESULT,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetGenres',
+    full_name='shop.Shop.GetGenres',
+    index=4,
+    containing_service=None,
+    input_type=shop_dot_messages__pb2._SHOPEMPTYQUERY,
+    output_type=shop_dot_messages__pb2._SHOPGETGENRESRESULT,
     serialized_options=None,
   ),
 ])

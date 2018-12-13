@@ -34,6 +34,11 @@ class ShopStub(object):
         request_serializer=shop_dot_messages__pb2.ShopSearchQuery.SerializeToString,
         response_deserializer=shop_dot_messages__pb2.ShopSearchResult.FromString,
         )
+    self.GetGenres = channel.unary_unary(
+        '/shop.Shop/GetGenres',
+        request_serializer=shop_dot_messages__pb2.ShopEmptyQuery.SerializeToString,
+        response_deserializer=shop_dot_messages__pb2.ShopGetGenresResult.FromString,
+        )
 
 
 class ShopServicer(object):
@@ -68,6 +73,13 @@ class ShopServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetGenres(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_ShopServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -90,6 +102,11 @@ def add_ShopServicer_to_server(servicer, server):
           servicer.Search,
           request_deserializer=shop_dot_messages__pb2.ShopSearchQuery.FromString,
           response_serializer=shop_dot_messages__pb2.ShopSearchResult.SerializeToString,
+      ),
+      'GetGenres': grpc.unary_unary_rpc_method_handler(
+          servicer.GetGenres,
+          request_deserializer=shop_dot_messages__pb2.ShopEmptyQuery.FromString,
+          response_serializer=shop_dot_messages__pb2.ShopGetGenresResult.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

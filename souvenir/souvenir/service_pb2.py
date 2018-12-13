@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='souvenir',
   syntax='proto3',
   serialized_options=_b('Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenir'),
-  serialized_pb=_b('\n\x16souvenir/service.proto\x12\x08souvenir\x1a\x17souvenir/messages.proto2\xac\x02\n\x08Souvenir\x12I\n\x06\x43reate\x12\x1d.souvenir.SouvenirCreateQuery\x1a\x1e.souvenir.SouvenirCreateResult\"\x00\x12H\n\x06\x44\x65lete\x12\x1d.souvenir.SouvenirDeleteQuery\x1a\x1d.souvenir.SouvenirDeleteQuery\"\x00\x12@\n\x03Get\x12\x1a.souvenir.SouvenirGetQuery\x1a\x1b.souvenir.SouvenirGetResult\"\x00\x12I\n\x06Search\x12\x1d.souvenir.SouvenirSearchQuery\x1a\x1e.souvenir.SouvenirSearchResult\"\x00\x42=Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenirb\x06proto3')
+  serialized_pb=_b('\n\x16souvenir/service.proto\x12\x08souvenir\x1a\x17souvenir/messages.proto2\xfc\x02\n\x08Souvenir\x12I\n\x06\x43reate\x12\x1d.souvenir.SouvenirCreateQuery\x1a\x1e.souvenir.SouvenirCreateResult\"\x00\x12H\n\x06\x44\x65lete\x12\x1d.souvenir.SouvenirDeleteQuery\x1a\x1d.souvenir.SouvenirDeleteQuery\"\x00\x12@\n\x03Get\x12\x1a.souvenir.SouvenirGetQuery\x1a\x1b.souvenir.SouvenirGetResult\"\x00\x12I\n\x06Search\x12\x1d.souvenir.SouvenirSearchQuery\x1a\x1e.souvenir.SouvenirSearchResult\"\x00\x12N\n\tGetGenres\x12\x1c.souvenir.SouvenirEmptyQuery\x1a!.souvenir.SouvenirGetGenresResult\"\x00\x42=Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenirb\x06proto3')
   ,
   dependencies=[souvenir_dot_messages__pb2.DESCRIPTOR,])
 
@@ -38,7 +38,7 @@ _SOUVENIR = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=62,
-  serialized_end=362,
+  serialized_end=442,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -74,6 +74,15 @@ _SOUVENIR = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=souvenir_dot_messages__pb2._SOUVENIRSEARCHQUERY,
     output_type=souvenir_dot_messages__pb2._SOUVENIRSEARCHRESULT,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetGenres',
+    full_name='souvenir.Souvenir.GetGenres',
+    index=4,
+    containing_service=None,
+    input_type=souvenir_dot_messages__pb2._SOUVENIREMPTYQUERY,
+    output_type=souvenir_dot_messages__pb2._SOUVENIRGETGENRESRESULT,
     serialized_options=None,
   ),
 ])

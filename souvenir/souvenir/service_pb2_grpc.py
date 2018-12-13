@@ -34,6 +34,11 @@ class SouvenirStub(object):
         request_serializer=souvenir_dot_messages__pb2.SouvenirSearchQuery.SerializeToString,
         response_deserializer=souvenir_dot_messages__pb2.SouvenirSearchResult.FromString,
         )
+    self.GetGenres = channel.unary_unary(
+        '/souvenir.Souvenir/GetGenres',
+        request_serializer=souvenir_dot_messages__pb2.SouvenirEmptyQuery.SerializeToString,
+        response_deserializer=souvenir_dot_messages__pb2.SouvenirGetGenresResult.FromString,
+        )
 
 
 class SouvenirServicer(object):
@@ -68,6 +73,13 @@ class SouvenirServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetGenres(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_SouvenirServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -90,6 +102,11 @@ def add_SouvenirServicer_to_server(servicer, server):
           servicer.Search,
           request_deserializer=souvenir_dot_messages__pb2.SouvenirSearchQuery.FromString,
           response_serializer=souvenir_dot_messages__pb2.SouvenirSearchResult.SerializeToString,
+      ),
+      'GetGenres': grpc.unary_unary_rpc_method_handler(
+          servicer.GetGenres,
+          request_deserializer=souvenir_dot_messages__pb2.SouvenirEmptyQuery.FromString,
+          response_serializer=souvenir_dot_messages__pb2.SouvenirGetGenresResult.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

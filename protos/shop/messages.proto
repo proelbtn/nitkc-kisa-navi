@@ -3,8 +3,9 @@ syntax = "proto3";
 package shop;
 option go_package = "github.com/proelbtn/school-eve-navi/gateway/protos/shop";
 
-enum ShopGenre {
-    Invalid = 0;
+message ShopGenre {
+    uint64 id = 1;
+    string name = 2;
 }
 
 message ShopRecord {
@@ -15,7 +16,7 @@ message ShopRecord {
 message ShopData {
     string name = 1;
     uint64 price = 2;
-    ShopGenre genre = 3;
+    uint64 genre = 3;
 }
 
 message ShopCreateQuery {
@@ -46,9 +47,15 @@ message ShopSearchQuery {
     string name = 1;
     double latitude = 2;
     double longitude = 3;
-    ShopGenre genre = 4;
+    uint64 genre = 4;
 }
 
 message ShopSearchResult {
     repeated ShopRecord records = 1;
+}
+
+message ShopEmptyQuery {}
+
+message ShopGetGenresResult {
+    repeated ShopGenre genres = 1;
 }

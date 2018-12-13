@@ -5,7 +5,7 @@ import (
 
 	"github.com/graphql-go/graphql"
 	"github.com/labstack/echo"
-	"github.com/proelbtn/school-eve-navi/gateway/models"
+	"github.com/proelbtn/school-eve-navi/gateway/models/queries"
 )
 
 type Request struct {
@@ -17,7 +17,7 @@ type Request struct {
 func GraphQLHandler(c echo.Context) (err error) {
 	req := new(Request)
 	schema, err := graphql.NewSchema(graphql.SchemaConfig{
-		Query: models.GetQueryObject(),
+		Query: queries.GetQueryObject(),
 	})
 
 	if err != nil {

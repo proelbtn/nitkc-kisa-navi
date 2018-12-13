@@ -1,23 +1,23 @@
-package models
+package queries
 
 import (
 	"context"
 	"errors"
 
-	"google.golang.org/grpc"
+	"github.com/proelbtn/school-eve-navi/gateway/resolvers"
 
 	"github.com/graphql-go/graphql"
-	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
+	"github.com/proelbtn/school-eve-navi/gateway/protos/souvenir"
 )
 
-func GetFoodRecordObject() *graphql.Object {
+func GetSouvenirRecordObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "FoodRecord",
+		Name: "SouvenirRecord",
 		Fields: graphql.Fields{
 			"id": &graphql.Field{
 				Type: graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*food.FoodRecord); ok {
+					if obj, ok := p.Source.(*souvenir.SouvenirRecord); ok {
 						return obj.Id, nil
 					}
 
@@ -27,7 +27,7 @@ func GetFoodRecordObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*food.FoodRecord); ok {
+					if obj, ok := p.Source.(*souvenir.SouvenirRecord); ok {
 						return obj.Data.Name, nil
 					}
 
@@ -40,15 +40,15 @@ func GetFoodRecordObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetFoodGenreObject() *graphql.Object {
+func GetSouvenirGenreObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "FoodGenre",
+		Name: "SouvenirGenre",
 		Fields: graphql.Fields{
 			"id": &graphql.Field{
 				Type: graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*Genre); ok {
-						return obj.id, nil
+					if obj, ok := p.Source.(*souvenir.SouvenirGenre); ok {
+						return obj.Id, nil
 					}
 
 					return nil, errors.New("unable to cast")
@@ -57,8 +57,8 @@ func GetFoodGenreObject() *graphql.Object {
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					if obj, ok := p.Source.(*Genre); ok {
-						return obj.name, nil
+					if obj, ok := p.Source.(*souvenir.SouvenirGenre); ok {
+						return obj.Name, nil
 					}
 
 					return nil, errors.New("unable to cast")
@@ -70,39 +70,37 @@ func GetFoodGenreObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetFoodCategoryObject() *graphql.Object {
+func GetSouvenirCategoryObject() *graphql.Object {
 	config := graphql.ObjectConfig{
-		Name: "FoodCategory",
+		Name: "SouvenirCategory",
 		Fields: graphql.Fields{
 			"genres": &graphql.Field{
-				Type: graphql.NewList(GetFoodGenreObject()),
+				Type: graphql.NewList(GetSouvenirGenreObject()),
 				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
-					arr := make([]*Genre, 0)
-
-					for k, v := range food.FoodGenre_name {
-						if k == 0 {
-							continue
-						}
-
-						arr = append(arr, &Genre{id: int64(k), name: v})
-					}
-
-					return arr, nil
-				},
-			},
-			"records": &graphql.Field{
-				Type: graphql.NewList(GetFoodRecordObject()),
-				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
-					cc, err := grpc.Dial("food:80", grpc.WithInsecure())
+					client, err := resolvers.GetSouvenirClient()
 					if err != nil {
 						return nil, err
 					}
 
-					client := food.NewFoodClient(cc)
+					res, err := client.GetGenres(context.Background(), &souvenir.SouvenirEmptyQuery{})
+					if err != nil {
+						return nil, err
+					}
 
-					res, err := client.Search(context.Background(), &food.FoodSearchQuery{
+					return res.Genres, nil
+				},
+			},
+			"records": &graphql.Field{
+				Type: graphql.NewList(GetSouvenirRecordObject()),
+				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
+					client, err := resolvers.GetSouvenirClient()
+					if err != nil {
+						return nil, err
+					}
+
+					res, err := client.Search(context.Background(), &souvenir.SouvenirSearchQuery{
 						Name:      "test",
-						Genre:     food.FoodGenre_Invalid,
+						Genre:     1,
 						Latitude:  0.123,
 						Longitude: 0.123,
 					})
@@ -119,9 +117,9 @@ func GetFoodCategoryObject() *graphql.Object {
 	return graphql.NewObject(config)
 }
 
-func GetFoodCategoryField() *graphql.Field {
+func GetSouvenirCategoryField() *graphql.Field {
 	return &graphql.Field{
-		Type: GetFoodCategoryObject(),
+		Type: GetSouvenirCategoryObject(),
 		Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
 			return true, nil
 		},
