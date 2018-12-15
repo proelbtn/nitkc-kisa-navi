@@ -22,7 +22,7 @@ class FoodStub(object):
     self.Delete = channel.unary_unary(
         '/food.Food/Delete',
         request_serializer=food_dot_messages__pb2.FoodDeleteQuery.SerializeToString,
-        response_deserializer=food_dot_messages__pb2.FoodDeleteQuery.FromString,
+        response_deserializer=food_dot_messages__pb2.FoodDeleteResult.FromString,
         )
     self.Get = channel.unary_unary(
         '/food.Food/Get',
@@ -91,7 +91,7 @@ def add_FoodServicer_to_server(servicer, server):
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
           request_deserializer=food_dot_messages__pb2.FoodDeleteQuery.FromString,
-          response_serializer=food_dot_messages__pb2.FoodDeleteQuery.SerializeToString,
+          response_serializer=food_dot_messages__pb2.FoodDeleteResult.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,

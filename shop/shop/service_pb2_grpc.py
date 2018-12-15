@@ -22,7 +22,7 @@ class ShopStub(object):
     self.Delete = channel.unary_unary(
         '/shop.Shop/Delete',
         request_serializer=shop_dot_messages__pb2.ShopDeleteQuery.SerializeToString,
-        response_deserializer=shop_dot_messages__pb2.ShopDeleteQuery.FromString,
+        response_deserializer=shop_dot_messages__pb2.ShopDeleteResult.FromString,
         )
     self.Get = channel.unary_unary(
         '/shop.Shop/Get',
@@ -91,7 +91,7 @@ def add_ShopServicer_to_server(servicer, server):
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
           request_deserializer=shop_dot_messages__pb2.ShopDeleteQuery.FromString,
-          response_serializer=shop_dot_messages__pb2.ShopDeleteQuery.SerializeToString,
+          response_serializer=shop_dot_messages__pb2.ShopDeleteResult.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,

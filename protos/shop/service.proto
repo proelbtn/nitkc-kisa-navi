@@ -7,7 +7,7 @@ import "shop/messages.proto";
 
 service Shop {
     rpc Create(shop.ShopCreateQuery) returns (shop.ShopCreateResult) {}
-    rpc Delete(shop.ShopDeleteQuery) returns (shop.ShopDeleteQuery) {}
+    rpc Delete(shop.ShopDeleteQuery) returns (shop.ShopDeleteResult) {}
     rpc Get(shop.ShopGetQuery) returns (shop.ShopGetResult) {}
     rpc Search(shop.ShopSearchQuery) returns (shop.ShopSearchResult) {}
     rpc GetGenres(shop.ShopEmptyQuery) returns (shop.ShopGetGenresResult) {}

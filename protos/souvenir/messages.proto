@@ -9,14 +9,14 @@ message SouvenirGenre {
 }
 
 message SouvenirRecord {
-    int64 id = 1;
+    uint64 id = 1;
     SouvenirData data = 2;
 }
 
 message SouvenirData {
     string name = 1;
     uint64 price = 2;
-    uint64 genre = 3;
+    uint64 genre_id = 3;
 }
 
 message SouvenirCreateQuery {
@@ -24,19 +24,19 @@ message SouvenirCreateQuery {
 }
 
 message SouvenirCreateResult {
-    SouvenirRecord record = 1;
+    bool success = 1;
 }
 
 message SouvenirDeleteQuery {
-    int64 id = 1;
+    uint64 id = 1;
 }
 
 message SouvenirDeleteResult {
-    int64 affected = 1;
+    bool success = 1;
 }
 
 message SouvenirGetQuery {
-    int64 id = 1;
+    uint64 id = 1;
 }
 
 message SouvenirGetResult {

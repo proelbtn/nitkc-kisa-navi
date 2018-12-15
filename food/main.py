@@ -28,10 +28,10 @@ while True:
 
 class FoodServicer(service_pb2_grpc.FoodServicer):
     def Create(self, request, context):
-        pass
+        return food_messages.FoodCreateResult(success=True)
 
     def Delete(self, request, context):
-        pass
+        return food_messages.FoodDeleteResult(success=True)
 
     def Get(self, request, context):
         pass

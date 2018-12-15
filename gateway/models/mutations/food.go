@@ -1,51 +1,81 @@
 package mutations
 
 import (
+	"context"
+
+	"github.com/proelbtn/school-eve-navi/gateway/models/common"
+
 	"github.com/graphql-go/graphql"
+	"github.com/proelbtn/school-eve-navi/gateway/protos/food"
+	"github.com/proelbtn/school-eve-navi/gateway/resolvers"
 )
 
 func CreateFood() *graphql.Field {
 	return &graphql.Field{
-		Type: graphql.Boolean,
+		Type: common.GetResultObject(),
 		Args: graphql.FieldConfigArgument{
-			"userName": &graphql.ArgumentConfig{
+			"name": &graphql.ArgumentConfig{
 				Type: graphql.NewNonNull(graphql.String),
 			},
-			"description": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
+			"price": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.Int),
 			},
-			"photoURL": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
-			},
-			"email": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
+			"genre_id": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.Int),
 			},
 		},
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			return false, nil
+			name, price, genreID := params.Args["name"], params.Args["price"], params.Args["genre_id"]
+
+			client, err := resolvers.GetFoodClient()
+			if err != nil {
+				return nil, err
+			}
+
+			req := &food.FoodCreateQuery{
+				Data: &food.FoodData{
+					Name:    name.(string),
+					Price:   uint64(price.(int)),
+					GenreId: uint64(genreID.(int)),
+				},
+			}
+
+			res, err := client.Create(context.Background(), req)
+			if err != nil {
+				return nil, err
+			}
+
+			return res.Success, nil
 		},
 	}
 }
 
 func DeleteFood() *graphql.Field {
 	return &graphql.Field{
-		Type: graphql.Boolean,
+		Type: common.GetResultObject(),
 		Args: graphql.FieldConfigArgument{
-			"userName": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
-			},
-			"description": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
-			},
-			"photoURL": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
-			},
-			"email": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
+			"id": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.Int),
 			},
 		},
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			return false, nil
+			id := params.Args["id"]
+
+			client, err := resolvers.GetFoodClient()
+			if err != nil {
+				return nil, err
+			}
+
+			req := &food.FoodDeleteQuery{
+				Id: uint64(id.(int)),
+			}
+
+			res, err := client.Delete(context.Background(), req)
+			if err != nil {
+				return nil, err
+			}
+
+			return res.Success, nil
 		},
 	}
 }

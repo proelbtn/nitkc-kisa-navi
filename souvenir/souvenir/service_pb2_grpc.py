@@ -22,7 +22,7 @@ class SouvenirStub(object):
     self.Delete = channel.unary_unary(
         '/souvenir.Souvenir/Delete',
         request_serializer=souvenir_dot_messages__pb2.SouvenirDeleteQuery.SerializeToString,
-        response_deserializer=souvenir_dot_messages__pb2.SouvenirDeleteQuery.FromString,
+        response_deserializer=souvenir_dot_messages__pb2.SouvenirDeleteResult.FromString,
         )
     self.Get = channel.unary_unary(
         '/souvenir.Souvenir/Get',
@@ -91,7 +91,7 @@ def add_SouvenirServicer_to_server(servicer, server):
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
           request_deserializer=souvenir_dot_messages__pb2.SouvenirDeleteQuery.FromString,
-          response_serializer=souvenir_dot_messages__pb2.SouvenirDeleteQuery.SerializeToString,
+          response_serializer=souvenir_dot_messages__pb2.SouvenirDeleteResult.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,

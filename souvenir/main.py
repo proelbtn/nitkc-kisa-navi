@@ -28,10 +28,10 @@ while True:
 
 class SouvenirServicer(service_pb2_grpc.SouvenirServicer):
     def Create(self, request, context):
-        pass
+        return souvenir_messages.SouvenirCreateResult(success=True)
 
     def Delete(self, request, context):
-        pass
+        return souvenir_messages.SouvenirDeleteResult(success=True)
 
     def Get(self, request, context):
         pass

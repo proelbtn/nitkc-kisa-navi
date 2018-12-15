@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='food',
   syntax='proto3',
   serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/food'),
-  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto2\xa8\x02\n\x04\x46ood\x12\x39\n\x06\x43reate\x12\x15.food.FoodCreateQuery\x1a\x16.food.FoodCreateResult\"\x00\x12\x38\n\x06\x44\x65lete\x12\x15.food.FoodDeleteQuery\x1a\x15.food.FoodDeleteQuery\"\x00\x12\x30\n\x03Get\x12\x12.food.FoodGetQuery\x1a\x13.food.FoodGetResult\"\x00\x12\x39\n\x06Search\x12\x15.food.FoodSearchQuery\x1a\x16.food.FoodSearchResult\"\x00\x12>\n\tGetGenres\x12\x14.food.FoodEmptyQuery\x1a\x19.food.FoodGetGenresResult\"\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/foodb\x06proto3')
+  serialized_pb=_b('\n\x12\x66ood/service.proto\x12\x04\x66ood\x1a\x13\x66ood/messages.proto2\xa9\x02\n\x04\x46ood\x12\x39\n\x06\x43reate\x12\x15.food.FoodCreateQuery\x1a\x16.food.FoodCreateResult\"\x00\x12\x39\n\x06\x44\x65lete\x12\x15.food.FoodDeleteQuery\x1a\x16.food.FoodDeleteResult\"\x00\x12\x30\n\x03Get\x12\x12.food.FoodGetQuery\x1a\x13.food.FoodGetResult\"\x00\x12\x39\n\x06Search\x12\x15.food.FoodSearchQuery\x1a\x16.food.FoodSearchResult\"\x00\x12>\n\tGetGenres\x12\x14.food.FoodEmptyQuery\x1a\x19.food.FoodGetGenresResult\"\x00\x42\x39Z7github.com/proelbtn/school-eve-navi/gateway/protos/foodb\x06proto3')
   ,
   dependencies=[food_dot_messages__pb2.DESCRIPTOR,])
 
@@ -38,7 +38,7 @@ _FOOD = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=50,
-  serialized_end=346,
+  serialized_end=347,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -55,7 +55,7 @@ _FOOD = _descriptor.ServiceDescriptor(
     index=1,
     containing_service=None,
     input_type=food_dot_messages__pb2._FOODDELETEQUERY,
-    output_type=food_dot_messages__pb2._FOODDELETEQUERY,
+    output_type=food_dot_messages__pb2._FOODDELETERESULT,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(

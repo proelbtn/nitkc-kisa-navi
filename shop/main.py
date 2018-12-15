@@ -28,10 +28,10 @@ while True:
 
 class ShopServicer(service_pb2_grpc.ShopServicer):
     def Create(self, request, context):
-        pass
+        return shop_messages.ShopCreateResult(success=True)
 
     def Delete(self, request, context):
-        pass
+        return shop_messages.ShopDeleteResult(success=True)
 
     def Get(self, request, context):
         pass

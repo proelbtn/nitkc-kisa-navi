@@ -16,7 +16,7 @@ message ShopRecord {
 message ShopData {
     string name = 1;
     uint64 price = 2;
-    uint64 genre = 3;
+    uint64 genre_id = 3;
 }
 
 message ShopCreateQuery {
@@ -24,19 +24,19 @@ message ShopCreateQuery {
 }
 
 message ShopCreateResult {
-    ShopRecord record = 1;
+    bool success = 1;
 }
 
 message ShopDeleteQuery {
-    int64 id = 1;
+    uint64 id = 1;
 }
 
 message ShopDeleteResult {
-    int64 affected = 1;
+    bool success = 1;
 }
 
 message ShopGetQuery {
-    int64 id = 1;
+    uint64 id = 1;
 }
 
 message ShopGetResult {
