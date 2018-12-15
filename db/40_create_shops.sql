@@ -1,15 +1,15 @@
 USE eve-navi;
 
-create table Shops (
-  id int PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Shops (
+  id INT PRIMARY KEY AUTO_INCREMENT,
 
-  name varchar(25),
-  genre_id int,
-  address varchar(25),
-  longtitude int NOT NULL,
-  latitude int NOT NULL,
+  name VARCHAR(25),
+  genre_id INT,
+  address VARCHAR(25),
+  longtitude INT NOT NULL,
+  latitude INT NOT NULL,
   
-  image_id int,
+  image_id INT,
 
   FOREIGN KEY (genre_id) REFERENCES ShopGenres(id)
 );

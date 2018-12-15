@@ -4,29 +4,41 @@ services:
     image: proelbtn/school-eve-navi-front
     ports:
       - 8080:80
+    depends_on:
+      - gateway
   gateway:
     image: proelbtn/school-eve-navi-gateway
     ports:
       - 9000:80
+    depends_on:
+      - food
+      - shop
+      - souvenir
   food:
     image: proelbtn/school-eve-navi-food
     ports:
       - 9001:80
+    depends_on:
+      - db
   shop:
     image: proelbtn/school-eve-navi-shop
     ports:
       - 9002:80
+    depends_on:
+      - db
   souvenir:
     image: proelbtn/school-eve-navi-souvenir
     ports:
       - 9003:80
+    depends_on:
+      - db
   db:
-    image: mysql
+    image: mysql:latest
     ports:
       - 3306:3306
     volumes:
       - ./data:/var/lib/mysql
-      - ./mysql:/docker-entrypoint-initdb.d
+      - ./db:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_DATABASE=eve-navi
       - MYSQL_ROOT_PASSWORD=password

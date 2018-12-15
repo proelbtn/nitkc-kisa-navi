@@ -1,6 +1,6 @@
 FROM python
 
-RUN pip install grpcio-tools grpcio-reflection
+RUN pip install grpcio-tools grpcio-reflection pymysql
 
 ADD . /data
 

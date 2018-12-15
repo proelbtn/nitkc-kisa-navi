@@ -1,13 +1,13 @@
 USE eve-navi;
 
-create table Foods (
-  id int PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Foods (
+  id INT PRIMARY KEY AUTO_INCREMENT,
 
-  name varchar(25),
-  genre_id int,
-  price int,
+  name VARCHAR(25),
+  genre_id INT,
+  price INT,
 
-  image_id int,
+  image_id INT,
 
   FOREIGN KEY (genre_id) REFERENCES ShopGenres(id)
 );

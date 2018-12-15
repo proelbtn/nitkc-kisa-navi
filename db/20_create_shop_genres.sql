@@ -1,6 +1,6 @@
 USE eve-navi;
 
-create table ShopGenres (
-  id int PRIMARY KEY,
-  name varchar(25) NOT NULL
+CREATE TABLE ShopGenres (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(25) NOT NULL
 );
