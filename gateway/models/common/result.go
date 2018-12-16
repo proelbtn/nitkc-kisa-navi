@@ -1,16 +1,13 @@
 package common
 
 import (
-	"sync"
-
 	"github.com/graphql-go/graphql"
 )
 
 var object *graphql.Object
-var once sync.Once
 
 func GetResultObject() *graphql.Object {
-	once.Do(func() {
+	if object == nil {
 		config := graphql.ObjectConfig{
 			Name: "Result",
 			Fields: graphql.Fields{
@@ -24,7 +21,7 @@ func GetResultObject() *graphql.Object {
 		}
 
 		object = graphql.NewObject(config)
-	})
+	}
 
 	return object
 }

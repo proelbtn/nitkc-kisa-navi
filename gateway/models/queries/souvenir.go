@@ -92,23 +92,55 @@ func GetSouvenirCategoryObject() *graphql.Object {
 			},
 			"records": &graphql.Field{
 				Type: graphql.NewList(GetSouvenirRecordObject()),
-				Resolve: func(_ graphql.ResolveParams) (interface{}, error) {
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"longitude": &graphql.ArgumentConfig{
+						Type: graphql.Float,
+					},
+					"latitude": &graphql.ArgumentConfig{
+						Type: graphql.Float,
+					},
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+					"genre": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+				},
+				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+					id, long, lat, name, genre := params.Args["id"], params.Args["longitude"], params.Args["latitude"], params.Args["name"], params.Args["genre"]
+
 					client, err := resolvers.GetSouvenirClient()
 					if err != nil {
 						return nil, err
 					}
 
-					res, err := client.Search(context.Background(), &souvenir.SouvenirSearchQuery{
-						Name:      "test",
-						Genre:     1,
-						Latitude:  0.123,
-						Longitude: 0.123,
-					})
-					if err != nil {
-						return nil, err
+					if id != nil && long == nil && lat == nil && name == nil && genre == nil {
+						res, err := client.Get(context.Background(), &souvenir.SouvenirGetQuery{
+							Id: uint64(id.(int)),
+						})
+						if err != nil {
+							return nil, err
+						}
+
+						return []*souvenir.SouvenirRecord{res.Record}, nil
+					} else if id == nil && long != nil && lat != nil {
+						query := souvenir.SouvenirSearchQuery{
+							Longitude: long.(float64),
+							Latitude:  lat.(float64),
+						}
+
+						res, err := client.Search(context.Background(), &query)
+						if err != nil {
+							return nil, err
+						}
+
+						return res.Records, nil
 					}
 
-					return res.Records, nil
+					return nil, errors.New("unexpected call")
 				},
 			},
 		},
