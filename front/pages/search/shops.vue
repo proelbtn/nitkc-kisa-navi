@@ -4,8 +4,7 @@
       div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
         div.content
           h1.title Search
-        SearchTab(:specs="specs")
-        div.content
+        SearchBoard(:specs="specs", v-on:click-search-button="search()" v-on:click-reset-button="reset()")
           div.field
             label.label Name
             div.control
@@ -24,8 +23,6 @@
             label.label Longitude
             div.control
               input.input(type="text", placeholder="...", disabled, v-model="longitude")
-          div.field
-            button.button.is-link(v-on:click="search()") Search
 
         hr
 
@@ -36,11 +33,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import SearchTab from '../../components/SearchTab.vue'
+import SearchBoard from '../../components/SearchBoard.vue'
 import G from '../../middleware/graphql-request-wrapper'
 
 export default Vue.extend({
-  components: { SearchTab },
+  components: { SearchBoard },
   data() {
     return {
       specs: [
@@ -60,9 +57,9 @@ export default Vue.extend({
           url: '/search/souvenirs'
         }
       ],
-      genres: [],
+      genres: [{ id: 0, name: '---' }],
       name: null,
-      genre: 1,
+      genre: 0,
       latitude: 35.3816,
       longitude: 139.9262
     }
@@ -74,11 +71,11 @@ export default Vue.extend({
     })
       .then(res => {
         this.genres = res.shops.genres.sort()
+        this.genres.unshift({ id: 0, name: '---' })
       })
       .catch(console.error)
 
     if (navigator.geolocation) {
-      // TODO: Loading Animation
       navigator.geolocation.getCurrentPosition(
         pos => {
           this.latitude = pos.coords.latitude
@@ -104,10 +101,9 @@ export default Vue.extend({
         })
         */
     },
-    changeFocuses(mode) {
-      this.name = ''
+    reset(event) {
+      this.name = null
       this.genre = 0
-      this.focuses = mode
     }
   }
 })
