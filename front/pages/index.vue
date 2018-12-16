@@ -10,8 +10,6 @@
           h2.subtitle Links
           div.field.is-grouped
             p.control
-              nuxt-link.button.is-info.is-rounded(to="/about") About
-            p.control
               nuxt-link.button.is-primary.is-rounded(to="/search/foods") Search
 </template>
 
