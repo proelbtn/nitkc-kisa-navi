@@ -7,8 +7,8 @@
     div.content
       slot
       div.field
-        button.button.is-link(v-on:click="$emit('click-search-button')") Search
-        button.button.is-error(v-on:click="$emit('click-reset-button')") Reset
+        button.button.is-link.is-rounded(v-on:click="$emit('click-search-button')") Search
+        button.button.is-danger.is-rounded(v-on:click="$emit('click-reset-button')") Reset
 </template>
 
 <script lang="ts">

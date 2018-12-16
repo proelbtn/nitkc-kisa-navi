@@ -34,6 +34,36 @@ func GetShopRecordObject() *graphql.Object {
 					return nil, errors.New("unable to cast")
 				},
 			},
+			"address": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.Address, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"longitude": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.Longitude, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"latitude": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.Latitude, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
 		},
 	}
 

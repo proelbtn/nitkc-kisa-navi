@@ -45,9 +45,7 @@ message FoodGetResult {
 
 message FoodSearchQuery {
     string name = 1;
-    double latitude = 2;
-    double longitude = 3;
-    uint64 genre = 4;
+    uint64 genre_id = 4;
 }
 
 message FoodSearchResult {

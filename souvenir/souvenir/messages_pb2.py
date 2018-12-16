@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='souvenir',
   syntax='proto3',
   serialized_options=_b('Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenir'),
-  serialized_pb=_b('\n\x17souvenir/messages.proto\x12\x08souvenir\")\n\rSouvenirGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"B\n\x0eSouvenirRecord\x12\n\n\x02id\x18\x01 \x01(\x04\x12$\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x16.souvenir.SouvenirData\"=\n\x0cSouvenirData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\x10\n\x08genre_id\x18\x03 \x01(\x04\";\n\x13SouvenirCreateQuery\x12$\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x16.souvenir.SouvenirData\"\'\n\x14SouvenirCreateResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"!\n\x13SouvenirDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"\'\n\x14SouvenirDeleteResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1e\n\x10SouvenirGetQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"=\n\x11SouvenirGetResult\x12(\n\x06record\x18\x01 \x01(\x0b\x32\x18.souvenir.SouvenirRecord\"W\n\x13SouvenirSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\r\n\x05genre\x18\x04 \x01(\x04\"A\n\x14SouvenirSearchResult\x12)\n\x07records\x18\x01 \x03(\x0b\x32\x18.souvenir.SouvenirRecord\"\x14\n\x12SouvenirEmptyQuery\"B\n\x17SouvenirGetGenresResult\x12\'\n\x06genres\x18\x01 \x03(\x0b\x32\x17.souvenir.SouvenirGenreB=Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenirb\x06proto3')
+  serialized_pb=_b('\n\x17souvenir/messages.proto\x12\x08souvenir\")\n\rSouvenirGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"B\n\x0eSouvenirRecord\x12\n\n\x02id\x18\x01 \x01(\x04\x12$\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x16.souvenir.SouvenirData\"=\n\x0cSouvenirData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05price\x18\x02 \x01(\x04\x12\x10\n\x08genre_id\x18\x03 \x01(\x04\";\n\x13SouvenirCreateQuery\x12$\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x16.souvenir.SouvenirData\"\'\n\x14SouvenirCreateResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"!\n\x13SouvenirDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"\'\n\x14SouvenirDeleteResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1e\n\x10SouvenirGetQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"=\n\x11SouvenirGetResult\x12(\n\x06record\x18\x01 \x01(\x0b\x32\x18.souvenir.SouvenirRecord\"5\n\x13SouvenirSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08genre_id\x18\x04 \x01(\x04\"A\n\x14SouvenirSearchResult\x12)\n\x07records\x18\x01 \x03(\x0b\x32\x18.souvenir.SouvenirRecord\"\x14\n\x12SouvenirEmptyQuery\"B\n\x17SouvenirGetGenresResult\x12\'\n\x06genres\x18\x01 \x03(\x0b\x32\x17.souvenir.SouvenirGenreB=Z;github.com/proelbtn/school-eve-navi/gateway/protos/souvenirb\x06proto3')
 )
 
 
@@ -347,21 +347,7 @@ _SOUVENIRSEARCHQUERY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='latitude', full_name='souvenir.SouvenirSearchQuery.latitude', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='longitude', full_name='souvenir.SouvenirSearchQuery.longitude', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='genre', full_name='souvenir.SouvenirSearchQuery.genre', index=3,
+      name='genre_id', full_name='souvenir.SouvenirSearchQuery.genre_id', index=1,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -380,7 +366,7 @@ _SOUVENIRSEARCHQUERY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=484,
-  serialized_end=571,
+  serialized_end=537,
 )
 
 
@@ -410,8 +396,8 @@ _SOUVENIRSEARCHRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=573,
-  serialized_end=638,
+  serialized_start=539,
+  serialized_end=604,
 )
 
 
@@ -434,8 +420,8 @@ _SOUVENIREMPTYQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=640,
-  serialized_end=660,
+  serialized_start=606,
+  serialized_end=626,
 )
 
 
@@ -465,8 +451,8 @@ _SOUVENIRGETGENRESRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=662,
-  serialized_end=728,
+  serialized_start=628,
+  serialized_end=694,
 )
 
 _SOUVENIRRECORD.fields_by_name['data'].message_type = _SOUVENIRDATA

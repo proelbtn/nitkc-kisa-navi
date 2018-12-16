@@ -26,18 +26,67 @@ while True:
         time.sleep(1)
 
 
+def get_record(res):
+    data = souvenir_messages.SouvenirData(
+        name=res['name'], genre_id=res['genre_id'], price=res['price'])
+    return souvenir_messages.SouvenirRecord(id=res['id'], data=data)
+
+
 class SouvenirServicer(service_pb2_grpc.SouvenirServicer):
     def Create(self, request, context):
-        return souvenir_messages.SouvenirCreateResult(success=True)
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO Souvenirs (name, genre_id, price) VALUES (%(name)s, %(genre_id)s, %(price)s)"
+                affected = cursor.execute(sql, {
+                    'name': request.data.name,
+                    'genre_id': request.data.genre_id,
+                    'price': request.data.price,
+                })
+                connection.commit()
+            return souvenir_messages.SouvenirCreateResult(success=affected == 1)
+        except Exception as e:
+            print(e)
 
     def Delete(self, request, context):
-        return souvenir_messages.SouvenirDeleteResult(success=True)
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM Souvenirs WHERE id = %(id)s"
+                affected = cursor.execute(sql, {
+                    'id': request.id
+                })
+                connection.commit()
+            return souvenir_messages.SouvenirDeleteResult(success=affected == 1)
+        except Exception as e:
+            print(e)
 
     def Get(self, request, context):
-        pass
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM Souvenirs WHERE id = %(id)s"
+                result = cursor.execute(sql, {
+                    'id': request.id
+                })
+                connection.commit()
+            return souvenir_messages.SouvenirDeleteResult(record=get_record(result))
+        except Exception as e:
+            print(e)
 
     def Search(self, request, context):
-        pass
+        try:
+            with connection.cursor() as cursor:
+                params = {}
+                sql = "SELECT * FROM Souvenirs WHERE 0 = 0"
+                if request.name != '':
+                    params['name'] = '%' + request.name + '%'
+                    sql += " AND name LIKE %(name)s"
+                if request.genre_id != 0:
+                    params['genre_id'] = request.genre_id
+                    sql += " AND genre_id = %(genre_id)s"
+                cursor.execute(sql, params)
+                result = cursor.fetchall()
+            return souvenir_messages.SouvenirSearchResult(records=[get_record(row) for row in result])
+        except Exception as e:
+            print(e)
 
     def GetGenres(self, request, context):
         with connection.cursor() as cursor:

@@ -34,6 +34,26 @@ func GetSouvenirRecordObject() *graphql.Object {
 					return nil, errors.New("unable to cast")
 				},
 			},
+			"genre_id": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*souvenir.SouvenirRecord); ok {
+						return obj.Data.GenreId, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"price": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*souvenir.SouvenirRecord); ok {
+						return obj.Data.Price, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
 		},
 	}
 
@@ -96,16 +116,13 @@ func GetSouvenirCategoryObject() *graphql.Object {
 					"id": &graphql.ArgumentConfig{
 						Type: graphql.Int,
 					},
-					"longitude": &graphql.ArgumentConfig{
-						Type: graphql.Float,
-					},
-					"latitude": &graphql.ArgumentConfig{
-						Type: graphql.Float,
-					},
 					"name": &graphql.ArgumentConfig{
 						Type: graphql.String,
 					},
 					"genre": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"price": &graphql.ArgumentConfig{
 						Type: graphql.Int,
 					},
 				},
@@ -126,11 +143,8 @@ func GetSouvenirCategoryObject() *graphql.Object {
 						}
 
 						return []*souvenir.SouvenirRecord{res.Record}, nil
-					} else if id == nil && long != nil && lat != nil {
-						query := souvenir.SouvenirSearchQuery{
-							Longitude: long.(float64),
-							Latitude:  lat.(float64),
-						}
+					} else if id == nil {
+						query := souvenir.SouvenirSearchQuery{}
 
 						res, err := client.Search(context.Background(), &query)
 						if err != nil {

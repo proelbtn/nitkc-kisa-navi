@@ -22,9 +22,9 @@
 
         hr
 
-        div.box
-        div.icon
-          <i class="fal fa-abacus"></i>
+        div(v-for="result in results")
+          div.box
+            p {{ result }}
 </template>
 
 <script lang="ts">
@@ -54,6 +54,7 @@ export default Vue.extend({
         }
       ],
       genres: [{ id: 0, name: '---' }],
+      results: [],
       name: null,
       genre: 0,
       price: 0
@@ -72,22 +73,21 @@ export default Vue.extend({
   },
   methods: {
     search(event) {
-      console.log(this.name, this.genre, this.latitude, this.longitude)
-      /*
       G(this.$axios, '/graphql', {
-        query: 'query($name: String) { foods(name: $name) { name } }',
+        query:
+          'query($name: String) { souvenirs { records(name: $name) { id genre_id name price } } }',
         variables: { name: this.name }
       })
-        .then(console.log)
+        .then(resp => (this.results = resp.souvenirs.records))
         .catch(reason => {
           console.error(reason)
         })
-        */
     },
     reset(event) {
       this.name = null
       this.genre = 0
       this.price = 0
+      this.results = []
     }
   }
 })

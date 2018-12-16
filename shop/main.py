@@ -30,18 +30,17 @@ while True:
 def get_record(res):
     data = shop_messages.ShopData(name=res['name'], genre_id=res['genre_id'],
                                   address=res['address'], longitude=res['longitude'], latitude=res['latitude'])
-    record = shop_messages.ShopRecord(id=res['id'], data=data)
-    return record
+    return shop_messages.ShopRecord(id=res['id'], data=data)
 
 
 class ShopServicer(service_pb2_grpc.ShopServicer):
     def Create(self, request, context):
         try:
             with connection.cursor() as cursor:
-                sql = "INSERT INTO Shops (name, genre_id, address, longitude, latitude) VALUES (%(name)s, %(genre)s, %(address)s, %(longitude)s, %(latitude)s)"
+                sql = "INSERT INTO Shops (name, genre_id, address, longitude, latitude) VALUES (%(name)s, %(genre_id)s, %(address)s, %(longitude)s, %(latitude)s)"
                 affected = cursor.execute(sql, {
                     'name': request.data.name,
-                    'genre': request.data.genre_id,
+                    'genre_id': request.data.genre_id,
                     'address': request.data.address,
                     'longitude': request.data.longitude,
                     'latitude': request.data.latitude
@@ -85,7 +84,8 @@ class ShopServicer(service_pb2_grpc.ShopServicer):
                     params['genre_id'] = request.genre_id
                     sql += " AND genre_id = %(genre_id)s"
                 cursor.execute(sql, params)
-                result = cursor.fetchmany()
+                result = cursor.fetchall()
+                print(result)
             return shop_messages.ShopSearchResult(records=[get_record(row) for row in result])
         except Exception as e:
             print(e)

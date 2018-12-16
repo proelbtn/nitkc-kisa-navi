@@ -34,6 +34,26 @@ func GetFoodRecordObject() *graphql.Object {
 					return nil, errors.New("unable to cast")
 				},
 			},
+			"price": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*food.FoodRecord); ok {
+						return obj.Data.Price, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"genre_id": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*food.FoodRecord); ok {
+						return obj.Data.GenreId, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
 		},
 	}
 
@@ -95,22 +115,19 @@ func GetFoodCategoryObject() *graphql.Object {
 					"id": &graphql.ArgumentConfig{
 						Type: graphql.Int,
 					},
-					"longitude": &graphql.ArgumentConfig{
-						Type: graphql.Float,
-					},
-					"latitude": &graphql.ArgumentConfig{
-						Type: graphql.Float,
-					},
 					"name": &graphql.ArgumentConfig{
 						Type: graphql.String,
 					},
 					"genre": &graphql.ArgumentConfig{
 						Type: graphql.Int,
 					},
+					"price": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
 				},
 				Type: graphql.NewList(GetFoodRecordObject()),
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-					id, long, lat, name, genre := params.Args["id"], params.Args["longitude"], params.Args["latitude"], params.Args["name"], params.Args["genre"]
+					id, name, genre := params.Args["id"], params.Args["name"], params.Args["genre"]
 
 					client, err := resolvers.GetFoodClient()
 					if err != nil {
@@ -129,17 +146,11 @@ func GetFoodCategoryObject() *graphql.Object {
 					} else if id == nil {
 						query := food.FoodSearchQuery{}
 
-						if long != nil {
-							query.Longitude = long.(float64)
-						}
-						if lat != nil {
-							query.Latitude = lat.(float64)
-						}
 						if name != nil {
 							query.Name = name.(string)
 						}
 						if genre != nil {
-							query.Genre = uint64(genre.(int))
+							query.GenreId = uint64(genre.(int))
 						}
 
 						res, err := client.Search(context.Background(), &query)
