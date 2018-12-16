@@ -117,7 +117,7 @@ func GetFoodCategoryObject() *graphql.Object {
 						return nil, err
 					}
 
-					if id != nil && long == nil && lat == nil && name == nil && genre == nil {
+					if id != nil {
 						res, err := client.Get(context.Background(), &food.FoodGetQuery{
 							Id: uint64(id.(int)),
 						})
@@ -126,12 +126,15 @@ func GetFoodCategoryObject() *graphql.Object {
 						}
 
 						return []*food.FoodRecord{res.Record}, nil
-					} else if id == nil && long != nil && lat != nil {
-						query := food.FoodSearchQuery{
-							Longitude: long.(float64),
-							Latitude:  lat.(float64),
-						}
+					} else if id == nil {
+						query := food.FoodSearchQuery{}
 
+						if long != nil {
+							query.Longitude = long.(float64)
+						}
+						if lat != nil {
+							query.Latitude = lat.(float64)
+						}
 						if name != nil {
 							query.Name = name.(string)
 						}

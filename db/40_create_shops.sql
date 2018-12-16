@@ -3,10 +3,10 @@ USE eve-navi;
 CREATE TABLE Shops (
   id INT PRIMARY KEY AUTO_INCREMENT,
 
-  name VARCHAR(25),
-  genre_id INT,
-  address VARCHAR(25),
-  longtitude INT NOT NULL,
+  name VARCHAR(25) NOT NULL,
+  genre_id INT NOT NULL,
+  address VARCHAR(25) NOT NULL,
+  longitude INT NOT NULL,
   latitude INT NOT NULL,
   
   image_id INT,

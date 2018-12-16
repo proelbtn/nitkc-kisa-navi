@@ -6,4 +6,4 @@ ADD . /data
 
 WORKDIR /data
 
-CMD [ "python", "main.py" ]
+CMD [ "python", "-u", "main.py" ]

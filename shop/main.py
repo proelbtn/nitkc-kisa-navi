@@ -22,29 +22,83 @@ while True:
     try:
         connection = pymysql.connect(**config)
         break
-    except:
-        time.sleep(1)
+    except Exception as e:
+        print(e)
+        time.sleep(5)
+
+
+def get_record(res):
+    data = shop_messages.ShopData(name=res['name'], genre_id=res['genre_id'],
+                                  address=res['address'], longitude=res['longitude'], latitude=res['latitude'])
+    record = shop_messages.ShopRecord(id=res['id'], data=data)
+    return record
 
 
 class ShopServicer(service_pb2_grpc.ShopServicer):
     def Create(self, request, context):
-        return shop_messages.ShopCreateResult(success=True)
+        try:
+            with connection.cursor() as cursor:
+                sql = "INSERT INTO Shops (name, genre_id, address, longitude, latitude) VALUES (%(name)s, %(genre)s, %(address)s, %(longitude)s, %(latitude)s)"
+                affected = cursor.execute(sql, {
+                    'name': request.data.name,
+                    'genre': request.data.genre_id,
+                    'address': request.data.address,
+                    'longitude': request.data.longitude,
+                    'latitude': request.data.latitude
+                })
+                connection.commit()
+            return shop_messages.ShopCreateResult(success=affected == 1)
+        except Exception as e:
+            print(e)
 
     def Delete(self, request, context):
-        return shop_messages.ShopDeleteResult(success=True)
+        try:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM Shops WHERE id = %(id)s"
+                affected = cursor.execute(sql, {
+                    'id': request.id
+                })
+                connection.commit()
+            return shop_messages.ShopDeleteResult(success=affected == 1)
+        except Exception as e:
+            print(e)
 
     def Get(self, request, context):
-        pass
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM Shops WHERE id = %(id)s"
+                cursor.execute(sql, {'id': request.id})
+                result = cursor.fetchone()
+            return shop_messages.ShopGetResult(record=get_record(result))
+        except Exception as e:
+            print(e)
 
     def Search(self, request, context):
-        pass
+        try:
+            with connection.cursor() as cursor:
+                params = {}
+                sql = "SELECT * FROM Shops WHERE 0 = 0"
+                if request.name != '':
+                    params['name'] = '%' + request.name + '%'
+                    sql += " AND name LIKE %(name)s"
+                if request.genre_id != 0:
+                    params['genre_id'] = request.genre_id
+                    sql += " AND genre_id = %(genre_id)s"
+                cursor.execute(sql, params)
+                result = cursor.fetchmany()
+            return shop_messages.ShopSearchResult(records=[get_record(row) for row in result])
+        except Exception as e:
+            print(e)
 
     def GetGenres(self, request, context):
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM ShopGenres"
-            cursor.execute(sql)
-            result = cursor.fetchall()
-        return shop_messages.ShopGetGenresResult(genres=result)
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM ShopGenres"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+            return shop_messages.ShopGetGenresResult(genres=result)
+        except Exception as e:
+            print(e)
 
 
 def serve():

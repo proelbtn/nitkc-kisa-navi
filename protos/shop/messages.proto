@@ -15,8 +15,10 @@ message ShopRecord {
 
 message ShopData {
     string name = 1;
-    uint64 price = 2;
     uint64 genre_id = 3;
+    double longitude = 4;
+    double latitude = 5;
+    string address = 6;
 }
 
 message ShopCreateQuery {
@@ -45,9 +47,7 @@ message ShopGetResult {
 
 message ShopSearchQuery {
     string name = 1;
-    double latitude = 2;
-    double longitude = 3;
-    uint64 genre = 4;
+    uint64 genre_id = 4;
 }
 
 message ShopSearchResult {

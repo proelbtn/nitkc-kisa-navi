@@ -105,19 +105,19 @@ func GetShopCategoryObject() *graphql.Object {
 					"name": &graphql.ArgumentConfig{
 						Type: graphql.String,
 					},
-					"genre": &graphql.ArgumentConfig{
+					"genre_id": &graphql.ArgumentConfig{
 						Type: graphql.Int,
 					},
 				},
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-					id, long, lat, name, genre := params.Args["id"], params.Args["longitude"], params.Args["latitude"], params.Args["name"], params.Args["genre"]
+					id, long, lat, name, genreID := params.Args["id"], params.Args["longitude"], params.Args["latitude"], params.Args["name"], params.Args["genre_id"]
 
 					client, err := resolvers.GetShopClient()
 					if err != nil {
 						return nil, err
 					}
 
-					if id != nil && long == nil && lat == nil && name == nil && genre == nil {
+					if id != nil && long == nil && lat == nil && name == nil && genreID == nil {
 						res, err := client.Get(context.Background(), &shop.ShopGetQuery{
 							Id: uint64(id.(int)),
 						})
@@ -126,23 +126,22 @@ func GetShopCategoryObject() *graphql.Object {
 						}
 
 						return []*shop.ShopRecord{res.Record}, nil
-					} else if id == nil && long != nil && lat != nil {
-						query := shop.ShopSearchQuery{
-							Longitude: long.(float64),
-							Latitude:  lat.(float64),
-						}
+					} else if id == nil {
+						query := shop.ShopSearchQuery{}
 
 						if name != nil {
 							query.Name = name.(string)
 						}
-						if genre != nil {
-							query.Genre = uint64(genre.(int))
+						if genreID != nil {
+							query.GenreId = uint64(genreID.(int))
 						}
 
 						res, err := client.Search(context.Background(), &query)
 						if err != nil {
 							return nil, err
 						}
+
+						// TODO: fitlering
 
 						return res.Records, nil
 					}
