@@ -20,8 +20,7 @@
             div.control
               input.input(type="number", name="price", v-model="price")
 
-        hr
-
+      div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
         div(v-for="result in results")
           div.box
             p {{ result }}

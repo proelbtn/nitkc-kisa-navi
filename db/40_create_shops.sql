@@ -8,6 +8,8 @@ CREATE TABLE Shops (
   address VARCHAR(25) NOT NULL,
   longitude INT NOT NULL,
   latitude INT NOT NULL,
+  open INT,
+  close INT,
   
   image_id INT,
 

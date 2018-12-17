@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='shop',
   syntax='proto3',
   serialized_options=_b('Z7github.com/proelbtn/school-eve-navi/gateway/protos/shop'),
-  serialized_pb=_b('\n\x13shop/messages.proto\x12\x04shop\"%\n\tShopGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"6\n\nShopRecord\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.shop.ShopData\"`\n\x08ShopData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08genre_id\x18\x03 \x01(\x04\x12\x11\n\tlongitude\x18\x04 \x01(\x01\x12\x10\n\x08latitude\x18\x05 \x01(\x01\x12\x0f\n\x07\x61\x64\x64ress\x18\x06 \x01(\t\"/\n\x0fShopCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.shop.ShopData\"#\n\x10ShopCreateResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1d\n\x0fShopDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"#\n\x10ShopDeleteResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1a\n\x0cShopGetQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"1\n\rShopGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"1\n\x0fShopSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08genre_id\x18\x04 \x01(\x04\"5\n\x10ShopSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.shop.ShopRecord\"\x10\n\x0eShopEmptyQuery\"6\n\x13ShopGetGenresResult\x12\x1f\n\x06genres\x18\x01 \x03(\x0b\x32\x0f.shop.ShopGenreB9Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
+  serialized_pb=_b('\n\x13shop/messages.proto\x12\x04shop\"%\n\tShopGenre\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\"6\n\nShopRecord\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1c\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x0e.shop.ShopData\"}\n\x08ShopData\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08genre_id\x18\x03 \x01(\x04\x12\x11\n\tlongitude\x18\x04 \x01(\x01\x12\x10\n\x08latitude\x18\x05 \x01(\x01\x12\x0f\n\x07\x61\x64\x64ress\x18\x06 \x01(\t\x12\x0c\n\x04open\x18\x07 \x01(\x04\x12\r\n\x05\x63lose\x18\x08 \x01(\x04\"/\n\x0fShopCreateQuery\x12\x1c\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32\x0e.shop.ShopData\"#\n\x10ShopCreateResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1d\n\x0fShopDeleteQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"#\n\x10ShopDeleteResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1a\n\x0cShopGetQuery\x12\n\n\x02id\x18\x01 \x01(\x04\"1\n\rShopGetResult\x12 \n\x06record\x18\x01 \x01(\x0b\x32\x10.shop.ShopRecord\"1\n\x0fShopSearchQuery\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08genre_id\x18\x04 \x01(\x04\"5\n\x10ShopSearchResult\x12!\n\x07records\x18\x01 \x03(\x0b\x32\x10.shop.ShopRecord\"\x10\n\x0eShopEmptyQuery\"6\n\x13ShopGetGenresResult\x12\x1f\n\x06genres\x18\x01 \x03(\x0b\x32\x0f.shop.ShopGenreB9Z7github.com/proelbtn/school-eve-navi/gateway/protos/shopb\x06proto3')
 )
 
 
@@ -143,6 +143,20 @@ _SHOPDATA = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='open', full_name='shop.ShopData.open', index=5,
+      number=7, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='close', full_name='shop.ShopData.close', index=6,
+      number=8, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -156,7 +170,7 @@ _SHOPDATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=124,
-  serialized_end=220,
+  serialized_end=249,
 )
 
 
@@ -186,8 +200,8 @@ _SHOPCREATEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=222,
-  serialized_end=269,
+  serialized_start=251,
+  serialized_end=298,
 )
 
 
@@ -217,8 +231,8 @@ _SHOPCREATERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=271,
-  serialized_end=306,
+  serialized_start=300,
+  serialized_end=335,
 )
 
 
@@ -248,8 +262,8 @@ _SHOPDELETEQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=308,
-  serialized_end=337,
+  serialized_start=337,
+  serialized_end=366,
 )
 
 
@@ -279,8 +293,8 @@ _SHOPDELETERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=339,
-  serialized_end=374,
+  serialized_start=368,
+  serialized_end=403,
 )
 
 
@@ -310,8 +324,8 @@ _SHOPGETQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=376,
-  serialized_end=402,
+  serialized_start=405,
+  serialized_end=431,
 )
 
 
@@ -341,8 +355,8 @@ _SHOPGETRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=404,
-  serialized_end=453,
+  serialized_start=433,
+  serialized_end=482,
 )
 
 
@@ -379,8 +393,8 @@ _SHOPSEARCHQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=455,
-  serialized_end=504,
+  serialized_start=484,
+  serialized_end=533,
 )
 
 
@@ -410,8 +424,8 @@ _SHOPSEARCHRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=506,
-  serialized_end=559,
+  serialized_start=535,
+  serialized_end=588,
 )
 
 
@@ -434,8 +448,8 @@ _SHOPEMPTYQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=561,
-  serialized_end=577,
+  serialized_start=590,
+  serialized_end=606,
 )
 
 
@@ -465,8 +479,8 @@ _SHOPGETGENRESRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=579,
-  serialized_end=633,
+  serialized_start=608,
+  serialized_end=662,
 )
 
 _SHOPRECORD.fields_by_name['data'].message_type = _SHOPDATA

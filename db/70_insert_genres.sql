@@ -8,6 +8,7 @@ INSERT INTO FoodGenres (name) VALUES ("Snacks");
 INSERT INTO FoodGenres (name) VALUES ("LightMeals");
 INSERT INTO FoodGenres (name) VALUES ("Drinks");
 
-INSERT INTO ShopGenres (name) VALUES ("---");
+INSERT INTO ShopGenres (name) VALUES ("Foods");
+INSERT INTO ShopGenres (name) VALUES ("Souvenirs");
 
 INSERT INTO SouvenirGenres (name) VALUES ("---");

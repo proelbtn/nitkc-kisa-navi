@@ -29,9 +29,15 @@ func CreateShop() *graphql.Field {
 			"address": &graphql.ArgumentConfig{
 				Type: graphql.NewNonNull(graphql.String),
 			},
+			"open": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.Int),
+			},
+			"close": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.Int),
+			},
 		},
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			name, genreID, long, lat, address := params.Args["name"], params.Args["genre_id"], params.Args["longitude"], params.Args["latitude"], params.Args["address"]
+			name, genreID, long, lat, address, open, close := params.Args["name"], params.Args["genre_id"], params.Args["longitude"], params.Args["latitude"], params.Args["address"], params.Args["open"], params.Args["close"]
 
 			client, err := resolvers.GetShopClient()
 			if err != nil {
@@ -45,6 +51,8 @@ func CreateShop() *graphql.Field {
 					Longitude: long.(float64),
 					Latitude:  lat.(float64),
 					Address:   address.(string),
+					Open:      uint64(open.(int)),
+					Close:     uint64(close.(int)),
 				},
 			}
 

@@ -19,6 +19,8 @@ message ShopData {
     double longitude = 4;
     double latitude = 5;
     string address = 6;
+    uint64 open = 7;
+    uint64 close = 8;
 }
 
 message ShopCreateQuery {

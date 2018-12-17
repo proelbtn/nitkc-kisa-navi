@@ -24,6 +24,16 @@ func GetShopRecordObject() *graphql.Object {
 					return nil, errors.New("unable to cast")
 				},
 			},
+			"genre_id": &graphql.Field{
+				Type: graphql.Int,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.GenreId, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
 			"name": &graphql.Field{
 				Type: graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
@@ -59,6 +69,26 @@ func GetShopRecordObject() *graphql.Object {
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					if obj, ok := p.Source.(*shop.ShopRecord); ok {
 						return obj.Data.Latitude, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"open": &graphql.Field{
+				Type: graphql.Int,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.Open, nil
+					}
+
+					return nil, errors.New("unable to cast")
+				},
+			},
+			"close": &graphql.Field{
+				Type: graphql.Int,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					if obj, ok := p.Source.(*shop.ShopRecord); ok {
+						return obj.Data.Close, nil
 					}
 
 					return nil, errors.New("unable to cast")

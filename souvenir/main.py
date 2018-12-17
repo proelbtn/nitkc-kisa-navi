@@ -22,8 +22,9 @@ while True:
     try:
         connection = pymysql.connect(**config)
         break
-    except:
-        time.sleep(1)
+    except Exception as e:
+        print(e)
+        time.sleep(5)
 
 
 def get_record(res):

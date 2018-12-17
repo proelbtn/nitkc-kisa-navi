@@ -1,7 +1,7 @@
 <template lang="pug">
   main.container
     div.columns
-      div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
+      div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop.board
         div.content
           h1.title Search
         SearchBoard(:specs="specs", v-on:click-search-button="search()" v-on:click-reset-button="reset()")
@@ -20,11 +20,11 @@
             div.control
               input.input(type="number", name="price", v-model="price")
 
-        hr
-
-        div(v-for="result in results")
-          div.box
-            p {{ result }}
+      div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
+        div.cards(v-for="result in results")
+          div.box.card
+            h5.title.is-5.name {{ result.name }}
+            h6.subtitle.is-6.price {{ result.price }}円
 </template>
 
 <script lang="ts">
@@ -57,7 +57,7 @@ export default Vue.extend({
       results: [],
       name: null,
       genre: 0,
-      price: 0
+      price: null
     }
   },
   computed: {},
@@ -86,8 +86,8 @@ export default Vue.extend({
     },
     reset(event) {
       this.name = null
-      this.genre = 0
-      this.price = 0
+      this.genre = null
+      this.price = null
       this.results = []
     }
   }
@@ -96,4 +96,22 @@ export default Vue.extend({
 
 
 <style lang="scss">
+.cards {
+  .card {
+    .name {
+    }
+    .price {
+      text-align: right;
+    }
+
+    margin-bottom: 10px;
+  }
+}
+.cards:last-child {
+  margin-bottom: 30px;
+}
+
+.board {
+  margin-bottom: 10px;
+}
 </style>

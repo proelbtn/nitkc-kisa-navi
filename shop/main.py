@@ -29,7 +29,7 @@ while True:
 
 def get_record(res):
     data = shop_messages.ShopData(name=res['name'], genre_id=res['genre_id'],
-                                  address=res['address'], longitude=res['longitude'], latitude=res['latitude'])
+                                  address=res['address'], longitude=res['longitude'], latitude=res['latitude'], open=res['open'], close=res['close'])
     return shop_messages.ShopRecord(id=res['id'], data=data)
 
 
@@ -37,13 +37,15 @@ class ShopServicer(service_pb2_grpc.ShopServicer):
     def Create(self, request, context):
         try:
             with connection.cursor() as cursor:
-                sql = "INSERT INTO Shops (name, genre_id, address, longitude, latitude) VALUES (%(name)s, %(genre_id)s, %(address)s, %(longitude)s, %(latitude)s)"
+                sql = "INSERT INTO Shops (name, genre_id, address, longitude, latitude, open, close) VALUES (%(name)s, %(genre_id)s, %(address)s, %(longitude)s, %(latitude)s, %(open)s, %(close)s)"
                 affected = cursor.execute(sql, {
                     'name': request.data.name,
                     'genre_id': request.data.genre_id,
                     'address': request.data.address,
                     'longitude': request.data.longitude,
-                    'latitude': request.data.latitude
+                    'latitude': request.data.latitude,
+                    'open': request.data.open,
+                    'close': request.data.close
                 })
                 connection.commit()
             return shop_messages.ShopCreateResult(success=affected == 1)
