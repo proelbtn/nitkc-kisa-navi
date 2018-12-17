@@ -9,3 +9,4 @@ Web Client <--+-- [GraphQL] ---> Gateway <--+-- [gRPC] ---> Shops <---> MySQL
                                             |
                                             +-- [gRPC] ---> Foods <---> MySQL
 ```
+
