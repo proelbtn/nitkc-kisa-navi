@@ -15,11 +15,12 @@
               div.select
                 select(v-model="genre")
                   option(v-for="genre in genres" v-bind:value="genre.id") {{ genre.name }}
-
+    div.columns
       div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
-        div(v-for="result in results")
-          div.box
-            p {{ result }}
+        div.cards(v-for="result in results")
+          div.box.card
+            h5.title.is-5.name {{ result.name }}
+            h6.subtitle.is-6.price {{ result.open }} {{ result.close }}
 </template>
 
 <script lang="ts">
@@ -78,7 +79,7 @@ export default Vue.extend({
     search(event) {
       G(this.$axios, '/graphql', {
         query:
-          'query($name: String) { shops { records(name: $name) { id genre_id name address latitude longitude } } }',
+          'query($name: String) { shops { records(name: $name) { id genre_id name address latitude longitude open close } } }',
         variables: { name: this.name }
       })
         .then(resp => {

@@ -16,14 +16,15 @@
                 select(v-model="genre")
                   option(v-for="genre in genres" v-bind:value="genre.id") {{ genre.name }}
           div.field
-            label.label Name
+            label.label Price
             div.control
               input.input(type="number", name="price", v-model="price")
-
+    div.columns
       div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
-        div(v-for="result in results")
-          div.box
-            p {{ result }}
+        div.cards(v-for="result in results")
+          div.box.card
+            h5.title.is-5.name {{ result.name }}
+            h6.subtitle.is-6.price {{ result.price }}円
 </template>
 
 <script lang="ts">
@@ -56,7 +57,7 @@ export default Vue.extend({
       results: [],
       name: null,
       genre: 0,
-      price: 0
+      price: null
     }
   },
   computed: {},
@@ -85,7 +86,7 @@ export default Vue.extend({
     reset(event) {
       this.name = null
       this.genre = 0
-      this.price = 0
+      this.price = null
       this.results = []
     }
   }

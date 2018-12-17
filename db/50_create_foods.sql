@@ -9,5 +9,5 @@ CREATE TABLE Foods (
 
   image_id INT,
 
-  FOREIGN KEY (genre_id) REFERENCES ShopGenres(id)
+  FOREIGN KEY (genre_id) REFERENCES FoodGenres(id)
 );

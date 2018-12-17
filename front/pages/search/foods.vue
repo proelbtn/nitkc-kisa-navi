@@ -19,7 +19,7 @@
             label.label Price
             div.control
               input.input(type="number", name="price", v-model="price")
-
+    div.columns
       div.column.is-10-touch.is-offset-1-touch.is-8-desktop.is-offset-2-desktop
         div.cards(v-for="result in results")
           div.box.card
