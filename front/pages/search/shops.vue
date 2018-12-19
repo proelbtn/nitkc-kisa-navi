@@ -20,7 +20,7 @@
         div.cards(v-for="result in results")
           div.box.card
             h5.title.is-5.name {{ result.name }}
-            h6.subtitle.is-6.price {{ result.open }} {{ result.close }}
+            h6.subtitle.is-6.price {{ result.open / 60 }}:{{ zeropad(result.open % 60, 2) }} ~ {{ result.close / 60 }}:{{ zeropad(result.close % 60, 2) }}
 </template>
 
 <script lang="ts">
@@ -76,6 +76,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    zeropad(num, len) {
+      return ('0000000000' + num).slice(-len)
+    },
     search(event) {
       G(this.$axios, '/graphql', {
         query:
