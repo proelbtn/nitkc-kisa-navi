@@ -65,15 +65,6 @@ export default Vue.extend({
         this.genres.unshift({ id: 0, name: '---' })
       })
       .catch(console.error)
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        pos => {},
-        error => {
-          console.error(error.code)
-        }
-      )
-    }
   },
   methods: {
     zeropad(num, len) {

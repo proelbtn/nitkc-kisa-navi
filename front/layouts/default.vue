@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     Header
-    nuxt
+    nuxt.main-contents
     Footer
 </template>
 
@@ -63,5 +63,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.main-contents {
+  margin-top: 30px;
 }
 </style>

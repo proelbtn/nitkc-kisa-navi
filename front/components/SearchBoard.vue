@@ -6,9 +6,9 @@
           nuxt-link(v-bind:to="spec.url") {{ spec.title }}
     div.content
       slot
-      div.field
-        button.button.is-link.is-rounded(v-on:click="$emit('click-search-button')") Search
-        button.button.is-danger.is-rounded(v-on:click="$emit('click-reset-button')") Reset
+      div.buttons-box.field.has-text-centered(style="padding-top: 20px")
+        button.button.is-link.is-rounded.is-large(v-on:click="$emit('click-search-button')") Search
+        button.button.is-danger.is-rounded.is-large(v-on:click="$emit('click-reset-button')") Reset
 </template>
 
 <script lang="ts">
@@ -24,3 +24,9 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss">
+.buttons-box * {
+  margin: 0px 10px;
+}
+</style>

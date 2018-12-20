@@ -1,7 +1,7 @@
 <template lang="pug">
   header.navbar
     div.navbar-brand
-      nuxt-link.navbar-item(to='/') eve-navi
+      nuxt-link.navbar-item(to='/') kisa-navi
 </template>
 
 <script lang="ts">
